@@ -230,17 +230,18 @@ function touchmovesita(event){
     // Determine which page index the touch is over
     let index, rightPercent;
     if (x < width * 0.17) {          // drop4 area
-        index = 0;
-        rightPercent = "0%";
-    } else if (x < width * 0.50) {   // drop3 area
-        index = 1;
-        rightPercent = "-100%";
-    } else if (x < width * 0.83) {   // drop2 area
-        index = 2;
-        rightPercent = "-200%";
-    } else {                         // drop1 area
         index = 3;
         rightPercent = "-300%";
+    } else if (x < width * 0.50) {   // drop3 area
+        index = 2;
+        rightPercent = "-200%";
+    } else if (x < width * 0.83) {   // drop2 area
+        index = 1;
+        rightPercent = "-100%";
+    } else {                         // drop1 area
+        
+        index = 0;
+        rightPercent = "0%";
     }
 
     pages.forEach(page => page.style.display = "none");
