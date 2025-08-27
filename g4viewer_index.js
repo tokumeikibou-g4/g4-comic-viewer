@@ -110,8 +110,8 @@ window.onload = function(){
   style.width="17%"
   
   var style=page1.style;
-  style.width="16px";
-  style.height="16px";
+  style.width="10%";
+  style.height=page1.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -120,8 +120,8 @@ window.onload = function(){
   style.right="2%";
   style.setProperty("z-index", "3");
   var style=page2.style;
-  style.width="16px";
-  style.height="16px";
+  style.width="10%";
+  style.height=page1.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -131,8 +131,8 @@ window.onload = function(){
   style.display="none"
   style.setProperty("z-index", "3");
   var style=page3.style;
-  style.width="16px";
-  style.height="16px";
+  style.width="10%";
+  style.height=page1.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -142,8 +142,8 @@ window.onload = function(){
   style.display="none"
   style.setProperty("z-index", "3");
   var style=page4.style;
-  style.width="16px";
-  style.height="16px";
+  style.width="10%";
+  style.height=page1.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -197,7 +197,7 @@ function dragend(index){
 }
 function indexrightpercent(index, rightp){
   return (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     pages.forEach(page => page.style.display = "none");
     pages[index].style.display = "block";
     naka.animate(
@@ -231,7 +231,6 @@ drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
 drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
 drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
 drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
-
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 
 function nakabutton2func(a, b, c){
