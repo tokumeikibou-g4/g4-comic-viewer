@@ -51,7 +51,7 @@ window.onload = function(){
   var style= ue.style;
   style.position= "absolute";
   style.width= "100%";
-  style.height= "3%";
+  style.height= "5%";
   style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
   style.setProperty("z-index", "1");
   var style= sita.style;
@@ -207,3 +207,4 @@ drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
 drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
 
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
+
