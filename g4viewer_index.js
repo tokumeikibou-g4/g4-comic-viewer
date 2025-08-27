@@ -26,6 +26,7 @@ const page2=document.getElementById("page2");
 const page3=document.getElementById("page3");
 const page4=document.getElementById("page4");
 const pages=[page1, page2, page3, page4]
+var touchmovesitaflag=0;
 
 const nakaoverlay=document.getElementById("nakaoverlay");
 const nakabutton1=document.getElementById("nakabutton1");
@@ -110,7 +111,7 @@ window.onload = function(){
   style.width="17%"
   
   var style=page1.style;
-  style.width="10%";
+  style.width="5%";
   style.height=page1.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
@@ -120,8 +121,8 @@ window.onload = function(){
   style.right="2%";
   style.setProperty("z-index", "3");
   var style=page2.style;
-  style.width="10%";
-  style.height=page1.offsetWidth+"px"
+  style.width="5%";
+  style.height=page2.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -131,8 +132,8 @@ window.onload = function(){
   style.display="none"
   style.setProperty("z-index", "3");
   var style=page3.style;
-  style.width="10%";
-  style.height=page1.offsetWidth+"px"
+  style.width="5%";
+  style.height=page3.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -142,8 +143,8 @@ window.onload = function(){
   style.display="none"
   style.setProperty("z-index", "3");
   var style=page4.style;
-  style.width="10%";
-  style.height=page1.offsetWidth+"px"
+  style.width="5%";
+  style.height=page4.offsetWidth+"px"
   style.backgroundColor= "white";
   style.border="4px solid #000";
   style.borderRadius="8px";
@@ -185,19 +186,21 @@ window.onload = function(){
 
 function dragstart(index){
   return (event) => {
+  touchmovesitaflag=1
   pages[index].style.opacity="0.7";
   scrollbar.style.display="block";
   }
 }
 function dragend(index){
   return (event) => {
+  touchmovesitaflag=0
   pages[index].style.opacity="1";
   scrollbar.style.display="none";
   }
 }
 function indexrightpercent(index, rightp){
   return (event) => {
-    //event.preventDefault();
+    event.preventDefault();
     pages.forEach(page => page.style.display = "none");
     pages[index].style.display = "block";
     naka.animate(
@@ -207,32 +210,57 @@ function indexrightpercent(index, rightp){
   };
 }
 
-page1.addEventListener("dragstart", dragstart(0));
-page2.addEventListener("dragstart", dragstart(1));
-page3.addEventListener("dragstart", dragstart(2));
-page4.addEventListener("dragstart", dragstart(3));
-page1.addEventListener("touchstart", dragstart(0));
-page2.addEventListener("touchstart", dragstart(1));
-page3.addEventListener("touchstart", dragstart(2));
-page4.addEventListener("touchstart", dragstart(3));
 
-page1.addEventListener("dragend", dragend(0));
-page2.addEventListener("dragend", dragend(1));
-page3.addEventListener("dragend", dragend(2));
-page4.addEventListener("dragend", dragend(3));
-page1.addEventListener("touchend", dragend(0));
-page2.addEventListener("touchend", dragend(1));
-page3.addEventListener("touchend", dragend(2));
-page4.addEventListener("touchend", dragend(3));
+pages.forEach((page, i) => {
+  page.addEventListener("dragstart", dragstart(i));
+  page.addEventListener("dragend", dragend(i));
+});
+pages.forEach((page, i) => {
+  page.addEventListener("touchstart", dragstart(i));
+  page.addEventListener("touchend", dragend(i));
+});
+function touchmovesita(event){
+  event.preventDefault();
+  if(touchmovesitaflag===0) return;
+    const touch = event.touches[0]; 
+    const rect = hako.getBoundingClientRect();
+    const x = touch.clientX - rect.left; // x position relative to hako
+    const width = rect.width;
+    
+    // Determine which page index the touch is over
+    let index, rightPercent;
+    if (x < width * 0.17) {          // drop4 area
+        index = 0;
+        rightPercent = "0%";
+    } else if (x < width * 0.50) {   // drop3 area
+        index = 1;
+        rightPercent = "-100%";
+    } else if (x < width * 0.83) {   // drop2 area
+        index = 2;
+        rightPercent = "-200%";
+    } else {                         // drop1 area
+        index = 3;
+        rightPercent = "-300%";
+    }
+
+    pages.forEach(page => page.style.display = "none");
+    pages[index].style.display = "block";
+
+    naka.animate(
+      [{ right: rightPercent }],
+      { duration: 200, fill: "forwards" }
+    ); // you can also animate if needed
+  
+}
 drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
-drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
-drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
-drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
-
+//drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
+//drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
+//drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
+//drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
+sita.addEventListener("touchmove", touchmovesita);
 function nakabutton2func(a, b, c){
   return (event) => {
     ue.animate(  
