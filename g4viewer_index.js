@@ -27,6 +27,12 @@ const page3=document.getElementById("page3");
 const page4=document.getElementById("page4");
 const pages=[page1, page2, page3, page4]
 
+const nakaoverlay=document.getElementById("nakaoverlay");
+const nakabutton1=document.getElementById("nakabutton1");
+const nakabutton2=document.getElementById("nakabutton2");
+const nakabutton3=document.getElementById("nakabutton3");
+let nakabutton2flag=0;
+
 //styling
 //id de dekiru no ha tabun js dake
 //css nannka yada
@@ -42,6 +48,26 @@ window.onload = function(){
   style.position= "relative";
   style.display="flex";
   style.overflow= "hidden";
+  var style = nakaoverlay.style;
+  style.width= "100%";
+  style.height= "100%";
+  style.position="absolute";
+  style.display="flex";
+  var style = nakabutton1.style;
+  style.width= "25%";
+  style.height= "100%";
+  style.setProperty("z-index", "0");
+  var style = nakabutton2.style;
+  style.width= "50%";
+  style.height= "100%";
+  style.display="flex";
+  style.setProperty("z-index", "0");
+  var style = nakabutton3.style;
+  style.width= "25%";
+  style.height= "100%";
+  style.display="flex";
+  style.setProperty("z-index", "0");
+  
   var style= naka.style;
   style.width= "100%";
   style.height= "100%";
@@ -208,5 +234,29 @@ drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
 
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 
+
+nakabutton2.addEventListener("click", (event) => {
+  if (nakabutton2flag===1){
+    ue.animate(  
+    [{ top: "0%" }],
+    { duration: 500, fill: "forwards", easing: "ease-out"}
+    );
+    sita.animate(  
+    [{ bottom: "0%" }],
+    { duration: 500, fill: "forwards", easing: "ease-out"}
+    );
+    nakabutton2flag=0;
+  }else{
+    ue.animate(  
+    [{ top: "-10%" }],
+    { duration: 500, fill: "forwards", easing: "ease-in"}
+    );
+    sita.animate(  
+    [{ bottom: "-15%" }],
+    { duration: 500, fill: "forwards", easing: "ease-in"}
+    );
+    nakabutton2flag=1;
+  }
+});
 
 
