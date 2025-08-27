@@ -234,29 +234,33 @@ drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
 
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 
-
+fuction nakabutton2func(a, b, c){
+  return (event) => {
+    ue.animate(  
+    [{ top: a }],
+    { duration: 500, fill: "forwards", easing: "ease-out"}
+    );
+    sita.animate(  
+    [{ bottom: b }],
+    { duration: 500, fill: "forwards", easing: "ease-out"}
+    );
+    nakabutton2flag=c;
+  }
+}
 nakabutton2.addEventListener("click", (event) => {
   if (nakabutton2flag===1){
-    ue.animate(  
-    [{ top: "0%" }],
-    { duration: 500, fill: "forwards", easing: "ease-out"}
-    );
-    sita.animate(  
-    [{ bottom: "0%" }],
-    { duration: 500, fill: "forwards", easing: "ease-out"}
-    );
-    nakabutton2flag=0;
+    nakabutton2func("0%", "0%", 0);
   }else{
-    ue.animate(  
-    [{ top: "-10%" }],
-    { duration: 500, fill: "forwards", easing: "ease-in"}
-    );
-    sita.animate(  
-    [{ bottom: "-15%" }],
-    { duration: 500, fill: "forwards", easing: "ease-in"}
-    );
-    nakabutton2flag=1;
+    nakabutton2func("-10%", "-15%", 1);
   }
 });
+nakabutton2.addEventListener("touch", (event) => {
+  if (nakabutton2flag===1){
+    nakabutton2func("0%", "0%", 0);
+  }else{
+    nakabutton2func("-10%", "-15%", 1);
+  }
+});
+
 
 
