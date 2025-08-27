@@ -35,7 +35,7 @@ window.onload = function(){
   //style.width= "100%";
   //var h = hako.offsetWidth*91/64
   //style.height= h + "px";
-  style.height= "90%";
+  style.height= "80%";
   var w = hako.offsetHeight*64/91; //koko dake ChatGPT ni oshiete moratta
   console.log(w);
   style.width=parseInt(w)+"px";
@@ -207,5 +207,6 @@ drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
 drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
 
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
+
 
 
