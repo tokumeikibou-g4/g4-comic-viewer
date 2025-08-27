@@ -249,19 +249,17 @@ function nakabutton2func(a, b, c){
 }
 nakabutton2.addEventListener("click", (event) => {
   if (nakabutton2flag===1){
-    nakabutton2func("0%", "0%", 0);
+    nakabutton2func("0%", "0%", 0)(event);
   }else{
-    nakabutton2func("-10%", "-15%", 1);
+    nakabutton2func("-10%", "-15%", 1)(event);
   }
 });
 nakabutton2.addEventListener("touch", (event) => {
   if (nakabutton2flag===1){
-    nakabutton2func("0%", "0%", 0);
+    nakabutton2func("0%", "0%", 0)(event);
   }else{
-    nakabutton2func("-10%", "-15%", 1);
+    nakabutton2func("-10%", "-15%", 1)(event);
   }
 });
-
-
 
 
