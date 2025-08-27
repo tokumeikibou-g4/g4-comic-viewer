@@ -257,10 +257,6 @@ drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-//drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
-//drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
-//drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
-//drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 sita.addEventListener("touchmove", touchmovesita);
 function nakabutton2func(a, b, c){
   return (event) => {
@@ -289,5 +285,6 @@ nakabutton2.addEventListener("touch", (event) => {
     nakabutton2func("-10%", "-15%", 1)(event);
   }
 });
+
 
 
