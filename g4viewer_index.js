@@ -234,7 +234,7 @@ drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
 
 drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 
-fuction nakabutton2func(a, b, c){
+function nakabutton2func(a, b, c){
   return (event) => {
     ue.animate(  
     [{ top: a }],
@@ -261,6 +261,7 @@ nakabutton2.addEventListener("touch", (event) => {
     nakabutton2func("-10%", "-15%", 1);
   }
 });
+
 
 
 
