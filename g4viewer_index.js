@@ -27,6 +27,7 @@ const page3=document.getElementById("page3");
 const page4=document.getElementById("page4");
 const pages=[page1, page2, page3, page4]
 var touchmovesitaflag=0;
+var currentindex=0;
 
 const nakaoverlay=document.getElementById("nakaoverlay");
 const nakabutton1=document.getElementById("nakabutton1");
@@ -57,6 +58,7 @@ window.onload = function(){
   var style = nakabutton1.style;
   style.width= "25%";
   style.height= "100%";
+  style.display="flex";
   style.setProperty("z-index", "0");
   var style = nakabutton2.style;
   style.width= "50%";
@@ -96,7 +98,7 @@ window.onload = function(){
   style.setProperty("z-index", "2");
  var style= scrollbar.style;
   style.width= "100%";
-  style.height= "16px";
+  style.height= "30%";
   style.backgroundColor= "gray";
   style.display="none";
   style.opacity="0.6";
@@ -183,7 +185,14 @@ window.onload = function(){
   
 }
 
-
+function nakaanimate(index){
+  var rightPercent = index*-100+"%";
+  naka.animate(
+      [{ right: rightPercent }],
+      { duration: 200, fill: "forwards" }
+    );
+    currentindex = index;
+} 
 function dragstart(index){
   return (event) => {
   touchmovesitaflag=1
@@ -198,15 +207,12 @@ function dragend(index){
   scrollbar.style.display="none";
   }
 }
-function indexrightpercent(index, rightp){
+function indexrightpercent(index, rightPercent){
   return (event) => {
     event.preventDefault();
     pages.forEach(page => page.style.display = "none");
     pages[index].style.display = "block";
-    naka.animate(
-      [{ right: rightp }],
-      { duration: 200, fill: "forwards" }
-    );
+    nakaanimate(index)
   };
 }
 
@@ -247,16 +253,16 @@ function touchmovesita(event){
     pages.forEach(page => page.style.display = "none");
     pages[index].style.display = "block";
 
-    naka.animate(
-      [{ right: rightPercent }],
-      { duration: 200, fill: "forwards" }
-    ); // you can also animate if needed
-  
+    nakaanimate(index)
 }
 drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
+//drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
+//drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
+//drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
+//drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 sita.addEventListener("touchmove", touchmovesita);
 function nakabutton2func(a, b, c){
   return (event) => {
@@ -286,5 +292,29 @@ nakabutton2.addEventListener("touch", (event) => {
   }
 });
 
+nakabutton3.addEventListener("click", (event) => {
+  if (currentindex != 0){
+    currentindex= currentindex-1
+  }
+  nakaanimate(currentindex);
+});
+nakabutton3.addEventListener("touch", (event) => {
+  if (currentindex != 0){
+    currentindex= currentindex-1
+  }
+  nakaanimate(currentindex);
+});
+nakabutton1.addEventListener("click", (event) => {
+  if (currentindex != 3){
+    currentindex = currentindex+1
+  }
+  nakaanimate(currentindex);
+});
+nakabutton1.addEventListener("touch", (event) => {
+  if (currentindex != 3){
+    currentindex = currentindex+1
+  }
+  nakaanimate(currentindex);
+});
 
 
