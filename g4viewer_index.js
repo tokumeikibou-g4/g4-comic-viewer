@@ -138,22 +138,25 @@ window.onload = function(){
   style.overflow="hidden";
   var style= uebuttonleft.style;
     style.width="10%"
-    style.height=uebuttonleft.offsetWidth+"px";
+   style.height=uebuttonleft.offsetWidth+"px";
     //style.padding="0"
     style.float="left"
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
     style.overflow="hidden";
+    style.setProperty("font-size", uebuttonleft.offsetHeight+"px")
   var style= uebuttonright.style;
     style.width="10%"
     //style.height="80%"
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
+   style.height=uebuttonright.offsetWidth+"px";
+    style.setProperty("font-size", uebuttonright.offsetHeight+"px")
   var style= title.style;
     style.width="80%"
-    style.height="80%"
+    style.height="60%"
     style.color="white";
     style.overflow="hidden";
     style.setProperty("font-size", title.offsetHeight+"px")
@@ -462,4 +465,3 @@ async function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
-
