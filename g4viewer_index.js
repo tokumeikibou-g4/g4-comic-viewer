@@ -449,6 +449,20 @@ nextbuttons.forEach((nbutton) => {
     });
   });
 });
+uebuttonleft.addEventListener("click", async (event) => {
+  var readrow=await fetchtool(nextbutton1.dataset.row);
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+});
+uebuttonright.addEventListener("click", async (event) => {
+  var readrow=await fetchtool(nextbutton4.dataset.row);
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+});
 
 
 async function fetchtool(index) {
@@ -468,3 +482,4 @@ async function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
