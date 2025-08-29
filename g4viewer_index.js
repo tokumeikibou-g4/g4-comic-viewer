@@ -136,25 +136,28 @@ window.onload = function(){
   style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
   style.setProperty("z-index", "1");
   style.overflow="hidden";
-  style.fontSize="100%"
   var style= uebuttonleft.style;
-    style.height="80%"
+    style.width="10%"
+   style.height=uebuttonleft.offsetWidth+"px";
     //style.padding="0"
     style.float="left"
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
-  style.fontSize="100%"
+    style.fontsize=uebuttonleft.offsetWidth+"px";
+    style.overflow="hidden";
   var style= uebuttonright.style;
-    style.height="80%"
+    style.width="10%"
+    //style.height="80%"
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
-    style.fontSize="100%"
   var style= title.style;
-    style.height="80%"
+    style.width="80%"
     style.color="white";
-    style.fontSize="100%"
+    style.fontSize="10vw"
+    style.overflow="hidden";
+    style.setProperty("font-size", "15%")
   
   
   var style= sita.style;
@@ -428,13 +431,7 @@ function updatenextmangaimg(){
 nextbuttons.forEach((nbutton) => {
   nbutton.addEventListener("click", async (event) => {
     var readrow=await fetchtool(nbutton.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-    });
-  });
-  nbutton.addEventListener("touch", async (event) => {
-    var readrow=await fetchtool(nbutton.dataset.row);
+    alert(readrow)
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
@@ -460,4 +457,3 @@ async function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
-
