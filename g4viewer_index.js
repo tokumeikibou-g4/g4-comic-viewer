@@ -29,7 +29,6 @@ const img3=document.getElementById("img3");
 const img4=document.getElementById("img4");
 const imglist=[img1, img2, img3, img4];
 const defsrc="https://i.imgur.com/wbEPdz9.png"
-var deftitle="現４ビューワーへようこそ！！"
 
 const page1=document.getElementById("page1");
 const page2=document.getElementById("page2");
@@ -59,9 +58,6 @@ const nextmangaimg3=document.getElementById("nextmangaimg3");
 const nextmangaimg4=document.getElementById("nextmangaimg4");
 const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
 
-//styling
-//id de dekiru no ha tabun js dake
-//css nannka yada
 
 
 window.onload = function(){  
@@ -413,10 +409,5 @@ nakabutton1.addEventListener("touch", (event) => {
 });
 
 
-function updatenextmangaimg(){
-  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png"
-  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png"
-  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png"
-  nextmangaimg4.src=defsrc;
-};
+
 
