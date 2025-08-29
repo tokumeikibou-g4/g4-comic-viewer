@@ -190,6 +190,10 @@ window.onload = function(){
   var style=drop4.style;
   style.width="17%"
   
+  var style=sitabar.style;
+  style.display= "flex";
+  style.setProperty("justify-content", "space-between");
+  
   pages.forEach(page => {
     var style=page.style;
     page.style.width="5%";
