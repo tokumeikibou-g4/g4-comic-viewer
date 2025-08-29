@@ -127,7 +127,7 @@ window.onload = function(){
   style.setProperty("z-index", "-1");
   
   var style= ue.style;
-  style.fontSize="80%"
+  style.fontSize="160%"
   style.position= "absolute";
   style.display= "flex";
   style.alignItems="center";
@@ -450,3 +450,4 @@ function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
