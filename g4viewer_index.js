@@ -4,6 +4,8 @@ const mangahako= document.getElementById("mangahako");
 const mangahako2 = document.getElementById("mangahako2");
 const hako= document.getElementById("hako");
 const hako2= document.getElementById("hako2");
+const hako2row1= document.getElementById("hako2row1");
+const hako2row2= document.getElementById("hako2row2");
 const ue= document.getElementById("ue");
 const uebuttonleft= document.getElementById("uebuttonleft");
 const uebuttonright= document.getElementById("uebuttonright");
@@ -25,6 +27,7 @@ const img1=document.getElementById("img1");
 const img2=document.getElementById("img2");
 const img3=document.getElementById("img3");
 const img4=document.getElementById("img4");
+const imglist=[img1, img2, img3, img4];
 const defsrc="https://i.imgur.com/wbEPdz9.png"
 var deftitle="現４ビューワーへようこそ！！"
 
@@ -44,9 +47,23 @@ const nakabutton2=document.getElementById("nakabutton2");
 const nakabutton3=document.getElementById("nakabutton3");
 let nakabutton2flag=0;
 
+const nextbutton1=document.getElementById("nextbutton1");
+const nextbutton2=document.getElementById("nextbutton2");
+const nextbutton3=document.getElementById("nextbutton3");
+const nextbutton4=document.getElementById("nextbutton4");
+const nextbuttons=[nextbutton1, nextbutton2, nextbutton3, nextbutton4];
+
+const nextmangaimg1=document.getElementById("nextmangaimg1");
+const nextmangaimg2=document.getElementById("nextmangaimg2");
+const nextmangaimg3=document.getElementById("nextmangaimg3");
+const nextmangaimg4=document.getElementById("nextmangaimg4");
+const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
+
 //styling
 //id de dekiru no ha tabun js dake
 //css nannka yada
+
+
 window.onload = function(){  
   var style= mangahako.style;
   style.width= "60%";
@@ -71,8 +88,9 @@ window.onload = function(){
   var style= hako2.style;
   style.margin="20%"
   style.width= "60%";
-  style.height="60%";
+  style.height=hako2.offsetWidth+"px";
   style.border="solid"
+  style.position="relative";
   if (w>window.innerWidth*0.6){
     mangahako.style.float="none";
     mangahako.style.width= "100%";
@@ -163,77 +181,85 @@ window.onload = function(){
   var style=drop4.style;
   style.width="17%"
   
+  pages.forEach(page => {
+    var style=page.style;
+    page.style.width="5%";
+    page.style.height=page.offsetWidth+"px";
+    style.backgroundColor= "white";
+    style.border="4px solid #000";
+    style.borderRadius="8px";
+    style.position= "absolute";
+    style.setProperty("z-index", "3");
+    style.display="none"
+    style.setProperty("float", "right");
+  });
   var style=page1.style;
-  style.width="5%";
-  style.height=page1.offsetWidth+"px"
-  style.backgroundColor= "white";
-  style.border="4px solid #000";
-  style.borderRadius="8px";
-  style.position= "absolute";
-  style.setProperty("float", "right");
   style.right="2%";
-  style.setProperty("z-index", "3");
+  style.display="block"
   var style=page2.style;
-  style.width="5%";
-  style.height=page2.offsetWidth+"px"
-  style.backgroundColor= "white";
-  style.border="4px solid #000";
-  style.borderRadius="8px";
-  style.position= "absolute";
-  style.setProperty("float", "right");
   style.right="33%";
-  style.display="none"
-  style.setProperty("z-index", "3");
   var style=page3.style;
-  style.width="5%";
-  style.height=page3.offsetWidth+"px"
-  style.backgroundColor= "white";
-  style.border="4px solid #000";
-  style.borderRadius="8px";
-  style.position= "absolute";
-  style.setProperty("float", "right");
   style.right="66%";
-  style.display="none"
-  style.setProperty("z-index", "3");
   var style=page4.style;
-  style.width="5%";
-  style.height=page4.offsetWidth+"px"
-  style.backgroundColor= "white";
-  style.border="4px solid #000";
-  style.borderRadius="8px";
-  style.position= "absolute";
-  style.setProperty("float", "right");
   style.left="2%";
-  style.display="none"
-  style.setProperty("z-index", "3");
   
   var style= img1.style;
-  style.width="100%"
   img1.src=defsrc;
+  style.width="100%"
   style.position= "absolute";
   style.setProperty("float", "right");
   style.right="0%"
-  
   var style= img2.style;
-  style.width="100%"
   img2.src="https://i.imgur.com/jWGOFkP.png";
+  style.width="100%"
   style.position= "absolute";
- style.right="100%"; 
+  style.right="100%"; 
   style.setProperty("float", "right");
-  
   var style= img3.style;
   style.width="100%"
   style.position= "absolute";
- style.right="200%"; img3.src="https://i.imgur.com/sE3XVlT.png";
+  style.right="200%"; 
+  img3.src="https://i.imgur.com/sE3XVlT.png";
   style.setProperty("float", "right");
-  
   var style= img4.style;
+  img4.src="https://i.imgur.com/4ISaQvC.png";
   style.width="100%"
   style.position= "absolute";
   style.right="300%";
-  img4.src="https://i.imgur.com/4ISaQvC.png";
   style.setProperty("float", "right");
   
+  var style=hako2row1.style;
+  style.width="100%";
+  style.height="50%";
+  var style=hako2row2.style;
+  style.width="100%";
+  style.height="50%";
+  nextbuttons.forEach(nbutton =>{
+    var style=nbutton.style;
+    style.width="35%";
+    style.height="35%";
+    style.position="absolute"
+  });
+  var style=nextbutton1.style
+  style.top="10%";
+  style.left="10%";
+  var style=nextbutton2.style
+  style.top="10%";
+  style.right="10%";
+  var style=nextbutton3.style
+  style.bottom="10%";
+  style.left="10%";
+  var style=nextbutton4.style
+  style.bottom="10%";
+  style.right="10%";
+  nextimgs.forEach(nimg =>{
+    var style=nimg.style;    
+    style.width="100%";
+    style.height="100%";
+    style.border="6px solid #000";
+    style.borderRadius="16px";
+  });
+  updatenextmangaimg();
 }
 
 function nakaanimate(index){
@@ -387,3 +413,40 @@ nakabutton1.addEventListener("touch", (event) => {
 });
 
 
+function updatenextmangaimg(){
+  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png"
+  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png"
+  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png"
+  nextmangaimg4.src=defsrc;
+};
+
+nextbuttons.forEach((nbutton) => {
+  nbutton.addEventListener("click", (event) => {
+    var readrow=fetchtool(nbutton.dataset.row);
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+  });
+});
+
+
+async function fetchtool(index) {
+  // if we haven't fetched yet, do it
+  if (!cachedRows) {
+    const text = await fetch("title_thumbail_4pages.txt").then(res => res.text());
+
+    cachedRows = text
+      .split("\n")                         // split into rows
+      .map(line => line.trim())            // trim whitespace
+      .filter(line => line.length > 0);    // skip empty rows
+  }
+
+  // if index out of bounds, return null
+  if (index < 0 || index >= cachedRows.length) {
+    return null;
+  }
+
+  // return that row split by commas
+  return cachedRows[index].split(",").map(item => item.trim());
+}
