@@ -1,5 +1,6 @@
 //variables
 //const let var zenzen siranai 
+alert("line3");
 const mangahako= document.getElementById("mangahako");
 const mangahako2 = document.getElementById("mangahako2");
 const hako= document.getElementById("hako");
@@ -446,6 +447,7 @@ function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
 
 
 
