@@ -1,7 +1,13 @@
 //variables
 //const let var zenzen siranai 
+const mangahako= document.getElementById("mangahako");
+const mangahako2 = document.getElementById("mangahako2");
 const hako= document.getElementById("hako");
+const hako2= document.getElementById("hako2");
 const ue= document.getElementById("ue");
+const uebuttonleft= document.getElementById("uebuttonleft");
+const uebuttonright= document.getElementById("uebuttonright");
+const title= document.getElementById("title");
 const dropzones= document.getElementById("dropzones");
 const naka= document.getElementById("naka");
 const migi= document.getElementById("migi");
@@ -20,12 +26,15 @@ const img2=document.getElementById("img2");
 const img3=document.getElementById("img3");
 const img4=document.getElementById("img4");
 const defsrc="https://i.imgur.com/wbEPdz9.png"
+var deftitle="現４ビューワーへようこそ！！"
 
 const page1=document.getElementById("page1");
 const page2=document.getElementById("page2");
 const page3=document.getElementById("page3");
 const page4=document.getElementById("page4");
 const pages=[page1, page2, page3, page4]
+var mainpages=4;
+var endpage=6;
 var touchmovesitaflag=0;
 var currentindex=0;
 
@@ -39,17 +48,37 @@ let nakabutton2flag=0;
 //id de dekiru no ha tabun js dake
 //css nannka yada
 window.onload = function(){  
+  var style= mangahako.style;
+  style.width= "60%";
+  style.height="100%";
+  style.setProperty("justify-content", "center");
+  style.display="flex";
+  style.float="left";
+  var style= mangahako2.style;
+  style.width= "40%";
+  style.height="100%";
+  style.setProperty("justify-content", "center");
+  style.alignItems="center";
+  style.display="flex";
   var style= hako.style;
-  //style.width= "100%";
-  //var h = hako.offsetWidth*91/64
-  //style.height= h + "px";
+  style.border="solid 0.5px "
   style.height= "80%";
   var w = hako.offsetHeight*64/91; //koko dake ChatGPT ni oshiete moratta
-  console.log(w);
   style.width=parseInt(w)+"px";
   style.position= "relative";
   style.display="flex";
   style.overflow= "hidden";
+  var style= hako2.style;
+  style.margin="20%"
+  style.width= "60%";
+  style.height="60%";
+  style.border="solid"
+  if (w>window.innerWidth*0.6){
+    mangahako.style.float="none";
+    mangahako.style.width= "100%";
+    mangahako2.style.width= "100%";
+  }
+  
   var style = nakaoverlay.style;
   style.width= "100%";
   style.height= "100%";
@@ -77,12 +106,34 @@ window.onload = function(){
   style.position= "absolute";
   style.display="flex";
   style.setProperty("z-index", "-1");
+  
   var style= ue.style;
   style.position= "absolute";
+  style.display= "flex";
+  style.alignItems="center";
+  style.setProperty("justify-content", "space-between");
   style.width= "100%";
   style.height= "10%";
   style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
   style.setProperty("z-index", "1");
+  style.overflow="hidden";
+  var style= uebuttonleft.style;
+    style.height="80%"
+    //style.padding="0"
+    style.float="left"
+    style.border="none";
+    style.backgroundColor="inherit";
+    style.color="white";
+  var style= uebuttonright.style;
+    style.height="80%"
+    style.border="none";
+    style.backgroundColor="inherit";
+    style.color="white";
+  var style= title.style;
+    style.height="80%"
+    style.color="white";
+  
+  
   var style= sita.style;
   style.width= "100%";
   style.height= "15%";
@@ -100,7 +151,7 @@ window.onload = function(){
   style.width= "100%";
   style.height= "30%";
   style.backgroundColor= "gray";
-  style.display="none";
+  //style.display="none";
   style.opacity="0.6";
   
   var style=drop1.style;
@@ -191,27 +242,32 @@ function nakaanimate(index){
       [{ right: rightPercent }],
       { duration: 200, fill: "forwards" }
     );
-    currentindex = index;
+  
+  pages.forEach(page => page.style.display = "none");
+  if (index<4){
+    pages[index].style.display = "block";
+  };
+    
+  currentindex = index;
 } 
 function dragstart(index){
   return (event) => {
   touchmovesitaflag=1
   pages[index].style.opacity="0.7";
-  scrollbar.style.display="block";
+  //scrollbar.style.display="block";
   }
 }
 function dragend(index){
   return (event) => {
   touchmovesitaflag=0
   pages[index].style.opacity="1";
-  scrollbar.style.display="none";
+  //scrollbar.style.display="none";
   }
 }
 function indexrightpercent(index, rightPercent){
   return (event) => {
     event.preventDefault();
-    pages.forEach(page => page.style.display = "none");
-    pages[index].style.display = "block";
+    
     nakaanimate(index)
   };
 }
@@ -249,9 +305,6 @@ function touchmovesita(event){
         index = 0;
         rightPercent = "0%";
     }
-
-    pages.forEach(page => page.style.display = "none");
-    pages[index].style.display = "block";
 
     nakaanimate(index)
 }
@@ -297,24 +350,40 @@ nakabutton3.addEventListener("click", (event) => {
     currentindex= currentindex-1
   }
   nakaanimate(currentindex);
+  if (currentindex <mainpages){
+    nakabutton2func("0%", "0%", 0)(event);
+    scrollbar.style.display="block";
+  }
 });
 nakabutton3.addEventListener("touch", (event) => {
   if (currentindex != 0){
     currentindex= currentindex-1
   }
   nakaanimate(currentindex);
+  if (currentindex <mainpages){
+    nakabutton2func("0%", "0%", 0)(event);
+    scrollbar.style.display="block";
+  }
 });
 nakabutton1.addEventListener("click", (event) => {
-  if (currentindex != 3){
+  if (currentindex < endpage-1){
     currentindex = currentindex+1
   }
   nakaanimate(currentindex);
+  if (currentindex >=mainpages){
+    nakabutton2func("-10%", "-15%", 1)(event);
+    scrollbar.style.display="none";
+  }
 });
 nakabutton1.addEventListener("touch", (event) => {
-  if (currentindex != 3){
+  if (currentindex != endpage-1){
     currentindex = currentindex+1
   }
   nakaanimate(currentindex);
+  if (currentindex >=mainpages){
+    nakabutton2func("-10%", "-15%", 1)(event);
+    scrollbar.style.display="none";
+  }
 });
 
 
