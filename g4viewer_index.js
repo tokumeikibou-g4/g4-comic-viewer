@@ -87,9 +87,9 @@ window.onload = function(){
   style.height=hako2.offsetWidth+"px";
   style.border="solid"
   style.position="relative";
-    body.style.background="red";
+    mangahako2.style.background="red";
   if (w>window.innerWidth*0.6){
-    body.style.background="black";
+    mangahako2.style.background="black";
     mangahako.style.float="none";
     mangahako.style.width= "100%";
     mangahako2.style.width= "100%";
@@ -445,6 +445,7 @@ function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
 
 
 
