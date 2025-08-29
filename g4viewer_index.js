@@ -420,31 +420,3 @@ function updatenextmangaimg(){
   nextmangaimg4.src=defsrc;
 };
 
-nextbuttons.forEach((nbutton) => {
-  nbutton.addEventListener("click", (event) => {
-    var readrow=fetchtool(nbutton.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-    });
-  });
-});
-
-
-function fetchtool(index) {
-  // if we haven't fetched yet, do it
-  const text = fetch("title_thumbail_4pages.txt").then(res => res.text())
-
-  var cachedRows = text
-      .split("\n")                         // split into rows
-      .map(line => line.trim())            // trim whitespace
-      .filter(line => line.length > 0);    // skip empty rows
-  
-  // if index out of bounds, return null
-  if (index < 0 || index >= cachedRows.length) {
-    return null;
-  }
-
-  // return that row split by commas
-  return cachedRows[index].split(",").map(item => item.trim());
-}
