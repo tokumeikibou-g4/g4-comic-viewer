@@ -424,10 +424,10 @@ nakabutton1.addEventListener("touch", (event) => {
 
 
 function updatenextmangaimg(){
-  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png"
-  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png"
-  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png"
-  nextmangaimg4.src=defsrc;
+  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png";
+  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png";
+  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png";
+  nextmangaimg4.src="https://i.imgur.com/K5HS79J.png";
 };
 
 nextbuttons.forEach((nbutton) => {
