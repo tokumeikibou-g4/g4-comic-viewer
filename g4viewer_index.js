@@ -437,9 +437,9 @@ nextbuttons.forEach((nbutton) => {
 });
 
 
-function fetchtool(index) {
+async function fetchtool(index) {
   // if we haven't fetched yet, do it
-  const text = fetch("title_thumbail_4pages.txt").then(res => res.text())
+  const text = await fetch("title_thumbail_4pages.txt").then(res => res.text())
 
   var cachedRows = text
       .split("\n")                         // split into rows
