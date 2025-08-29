@@ -144,7 +144,6 @@ window.onload = function(){
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
-    style.fontsize=uebuttonleft.offsetWidth+"px";
     style.overflow="hidden";
   var style= uebuttonright.style;
     style.width="10%"
@@ -154,6 +153,7 @@ window.onload = function(){
     style.color="white";
   var style= title.style;
     style.width="80%"
+    style.height="80%"
     style.color="white";
     style.overflow="hidden";
     style.setProperty("font-size", title.offestHeight+"px")
@@ -430,7 +430,13 @@ function updatenextmangaimg(){
 nextbuttons.forEach((nbutton) => {
   nbutton.addEventListener("click", async (event) => {
     var readrow=await fetchtool(nbutton.dataset.row);
-    alert(readrow)
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+  });
+  nbutton.addEventListener("touch", async (event) => {
+    var readrow=await fetchtool(nbutton.dataset.row);
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
