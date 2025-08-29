@@ -191,6 +191,8 @@ window.onload = function(){
   style.width="17%"
   
   var style=sitabar.style;
+  style.width= "100%";
+  style.height= "70%";
   style.display= "flex";
   style.setProperty("justify-content", "space-between");
   
