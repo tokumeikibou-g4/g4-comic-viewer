@@ -138,7 +138,7 @@ window.onload = function(){
   style.overflow="hidden";
   var style= uebuttonleft.style;
     style.width="10%"
-   style.height=uebuttonleft.offsetWidth+"px";
+    style.height=uebuttonleft.offsetWidth+"px";
     //style.padding="0"
     style.float="left"
     style.border="none";
@@ -156,7 +156,7 @@ window.onload = function(){
     style.height="80%"
     style.color="white";
     style.overflow="hidden";
-    style.setProperty("font-size", title.offestHeight+"px")
+    style.setProperty("font-size", title.offsetHeight+"px")
   
   
   var style= sita.style;
@@ -462,3 +462,4 @@ async function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
