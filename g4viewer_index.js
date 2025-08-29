@@ -67,7 +67,7 @@ window.onload = function(){
   style.setProperty("justify-content", "center");
   style.display="flex";
   style.float="left";
-  style.background="red";
+  alert("line70");
   var style= mangahako2.style;
   style.width= "40%";
   style.height="100%";
@@ -446,6 +446,7 @@ function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
 
 
 
