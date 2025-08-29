@@ -1,6 +1,5 @@
 //variables
 //const let var zenzen siranai 
-alert("line3");
 const mangahako= document.getElementById("mangahako");
 const mangahako2 = document.getElementById("mangahako2");
 const hako= document.getElementById("hako");
@@ -30,6 +29,7 @@ const img3=document.getElementById("img3");
 const img4=document.getElementById("img4");
 const imglist=[img1, img2, img3, img4];
 const defsrc="https://i.imgur.com/wbEPdz9.png"
+var deftitle="現４ビューワーへようこそ！！"
 
 const page1=document.getElementById("page1");
 const page2=document.getElementById("page2");
@@ -59,6 +59,9 @@ const nextmangaimg3=document.getElementById("nextmangaimg3");
 const nextmangaimg4=document.getElementById("nextmangaimg4");
 const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
 
+//styling
+//id de dekiru no ha tabun js dake
+//css nannka yada
 
 
 window.onload = function(){  
@@ -68,7 +71,6 @@ window.onload = function(){
   style.setProperty("justify-content", "center");
   style.display="flex";
   style.float="left";
-  alert("line70");
   var style= mangahako2.style;
   style.width= "40%";
   style.height="100%";
@@ -89,9 +91,7 @@ window.onload = function(){
   style.height=hako2.offsetWidth+"px";
   style.border="solid"
   style.position="relative";
-    mangahako2.style.background="red";
   if (w>window.innerWidth*0.6){
-    mangahako2.style.background="black";
     mangahako.style.float="none";
     mangahako.style.width= "100%";
     mangahako2.style.width= "100%";
@@ -412,6 +412,7 @@ nakabutton1.addEventListener("touch", (event) => {
   }
 });
 
+
 function updatenextmangaimg(){
   nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png"
   nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png"
@@ -447,12 +448,3 @@ function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
-
-
-
-
-
-
-
-
-
