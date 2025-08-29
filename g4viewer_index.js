@@ -61,10 +61,8 @@ const nextmangaimg3=document.getElementById("nextmangaimg3");
 const nextmangaimg4=document.getElementById("nextmangaimg4");
 const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
 
-//styling
-//id de dekiru no ha tabun js dake
-//css nannka yada
 
+const row2hako=document.getElementById("row2hako");
 
 window.onload = function(){  
   var style= mangahako.style;
@@ -129,6 +127,7 @@ window.onload = function(){
   style.setProperty("z-index", "-1");
   
   var style= ue.style;
+  style.top="0";
   style.position= "absolute";
   style.display= "flex";
   //style.alignItems="center";
@@ -137,7 +136,7 @@ window.onload = function(){
   style.height= "10%";
   style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
   style.setProperty("z-index", "1");
-    style.overflow="hidden";
+  style.overflow="hidden";
   var style= uebuttonleft.style;
     style.width="10%"
     style.height=uebuttonleft.offsetWidth+"px";
@@ -279,6 +278,10 @@ window.onload = function(){
     style.height="100%";
     style.border="6px solid #000";
     style.borderRadius="16px";
+    
+  var style = row2hako.style;
+    style.setProperty("float", "none");
+    style.width="60%"
   });
   updatenextmangaimg();
 }
@@ -447,21 +450,18 @@ nextbuttons.forEach((nbutton) => {
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
+      row2hako.textContent=readrow[0]
     });
   });
-  nbutton.addEventListener("touch", async (event) => {
-    var readrow=await fetchtool(nbutton.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-    });
-  });
+  
 });
 uebuttonleft.addEventListener("click", async (event) => {
   var readrow=await fetchtool(nextbutton1.dataset.row);
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
+      row2hako.textContent=readrow[0]
+      
     });
 });
 uebuttonright.addEventListener("click", async (event) => {
@@ -469,6 +469,7 @@ uebuttonright.addEventListener("click", async (event) => {
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
+      row2hako.textContent=readrow[0]
     });
 });
 
