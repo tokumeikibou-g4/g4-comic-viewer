@@ -129,16 +129,16 @@ window.onload = function(){
   var style= ue.style;
   style.position= "absolute";
   style.display= "flex";
-  style.alignItems="center";
+  //style.alignItems="center";
   style.setProperty("justify-content", "space-between");
   style.width= "100%";
   style.height= "10%";
   style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
   style.setProperty("z-index", "1");
-  style.overflow="hidden";
+    style.overflow="hidden";
   var style= uebuttonleft.style;
     style.width="10%"
-   style.height=uebuttonleft.offsetWidth+"px";
+    style.height=uebuttonleft.offsetWidth+"px";
     //style.padding="0"
     style.float="left"
     style.border="none";
@@ -158,7 +158,6 @@ window.onload = function(){
     style.width="80%"
     style.height="60%"
     style.color="white";
-    style.overflow="hidden";
     style.setProperty("font-size", title.offsetHeight+"px")
   
   
