@@ -85,17 +85,18 @@ window.onload = function(){
   style.position= "relative";
   style.display="flex";
   style.overflow= "hidden";
+  
+  if (w>window.innerWidth*0.6){
+    mangahako.style.float="none";
+    mangahako.style.width= "100%";
+    mangahako2.style.width= "100%";
+  }
   var style= hako2.style;
   style.margin="20%"
   style.width= "60%";
   style.height=hako2.offsetWidth+"px";
   style.border="solid"
   style.position="relative";
-  if (w>window.innerWidth*0.6){
-    mangahako.style.float="none";
-    mangahako.style.width= "100%";
-    mangahako2.style.width= "100%";
-  }
   
   var style = nakaoverlay.style;
   style.width= "100%";
@@ -126,6 +127,7 @@ window.onload = function(){
   style.setProperty("z-index", "-1");
   
   var style= ue.style;
+  style.fontSize="80%"
   style.position= "absolute";
   style.display= "flex";
   style.alignItems="center";
