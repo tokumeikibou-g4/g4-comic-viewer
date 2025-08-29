@@ -428,7 +428,13 @@ function updatenextmangaimg(){
 nextbuttons.forEach((nbutton) => {
   nbutton.addEventListener("click", async (event) => {
     var readrow=await fetchtool(nbutton.dataset.row);
-    alert(readrow)
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+  });
+  nbutton.addEventListener("touch", async (event) => {
+    var readrow=await fetchtool(nbutton.dataset.row);
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
       title.textContent=readrow[0];
@@ -454,3 +460,4 @@ async function fetchtool(index) {
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
 }
+
