@@ -431,17 +431,15 @@ nextbuttons.forEach((nbutton) => {
 });
 
 
-async function fetchtool(index) {
+function fetchtool(index) {
   // if we haven't fetched yet, do it
-  if (!cachedRows) {
-    const text = await fetch("title_thumbail_4pages.txt").then(res => res.text());
+  const text = fetch("title_thumbail_4pages.txt").then(res => res.text())
 
-    cachedRows = text
+  var cachedRows = text
       .split("\n")                         // split into rows
       .map(line => line.trim())            // trim whitespace
       .filter(line => line.length > 0);    // skip empty rows
-  }
-
+  
   // if index out of bounds, return null
   if (index < 0 || index >= cachedRows.length) {
     return null;
