@@ -87,7 +87,9 @@ window.onload = function(){
   style.height=hako2.offsetWidth+"px";
   style.border="solid"
   style.position="relative";
+    body.style.background="red";
   if (w>window.innerWidth*0.6){
+    body.style.background="black";
     mangahako.style.float="none";
     mangahako.style.width= "100%";
     mangahako2.style.width= "100%";
@@ -407,6 +409,43 @@ nakabutton1.addEventListener("touch", (event) => {
     scrollbar.style.display="none";
   }
 });
+
+function updatenextmangaimg(){
+  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png"
+  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png"
+  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png"
+  nextmangaimg4.src=defsrc;
+};
+
+nextbuttons.forEach((nbutton) => {
+  nbutton.addEventListener("click", (event) => {
+    var readrow=fetchtool(nbutton.dataset.row);
+    imglist.forEach((imgs, i) => {
+      imgs.src=readrow[2+i];
+      title.textContent=readrow[0];
+    });
+  });
+});
+
+
+function fetchtool(index) {
+  // if we haven't fetched yet, do it
+  const text = fetch("title_thumbail_4pages.txt").then(res => res.text())
+
+  var cachedRows = text
+      .split("\n")                         // split into rows
+      .map(line => line.trim())            // trim whitespace
+      .filter(line => line.length > 0);    // skip empty rows
+  
+  // if index out of bounds, return null
+  if (index < 0 || index >= cachedRows.length) {
+    return null;
+  }
+
+  // return that row split by commas
+  return cachedRows[index].split(",").map(item => item.trim());
+}
+
 
 
 
