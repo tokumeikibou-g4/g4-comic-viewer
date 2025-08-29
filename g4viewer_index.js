@@ -426,8 +426,8 @@ function updatenextmangaimg(){
 };
 
 nextbuttons.forEach((nbutton) => {
-  nbutton.addEventListener("click", (event) => {
-    var readrow=fetchtool(nbutton.dataset.row);
+  nbutton.addEventListener("click", async (event) => {
+    var readrow=await fetchtool(nbutton.dataset.row);
     alert(readrow)
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
