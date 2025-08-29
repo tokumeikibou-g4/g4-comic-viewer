@@ -155,9 +155,8 @@ window.onload = function(){
   var style= title.style;
     style.width="80%"
     style.color="white";
-    style.fontSize="10vw"
     style.overflow="hidden";
-    style.setProperty("font-size", "15%")
+    style.setProperty("font-size", title.offestHeight+"px")
   
   
   var style= sita.style;
