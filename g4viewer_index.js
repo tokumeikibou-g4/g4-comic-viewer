@@ -30,6 +30,8 @@ const img4=document.getElementById("img4");
 const imglist=[img1, img2, img3, img4];
 const defsrc="https://i.imgur.com/wbEPdz9.png"
 var deftitle="現４ビューワーへようこそ！！"
+const img5=document.getElementById("img5");
+const img6=document.getElementById("img6");
 
 const page1=document.getElementById("page1");
 const page2=document.getElementById("page2");
@@ -218,30 +220,34 @@ window.onload = function(){
   var style=page4.style;
   style.left="2%";
   
+  imglist.forEach((imgs, i) => {
+    var style=imgs.style;
+    style.width="100%"
+    style.position= "absolute";
+    style.setProperty("float", "right");
+    style.right=(i)*100+"%"
+  });
   var style= img1.style;
   img1.src=defsrc;
-  style.width="100%"
-  style.position= "absolute";
-  style.setProperty("float", "right");
-  style.right="0%"
   var style= img2.style;
   img2.src="https://i.imgur.com/jWGOFkP.png";
-  style.width="100%"
-  style.position= "absolute";
-  style.right="100%"; 
-  style.setProperty("float", "right");
   var style= img3.style;
-  style.width="100%"
-  style.position= "absolute";
-  style.right="200%"; 
   img3.src="https://i.imgur.com/sE3XVlT.png";
   style.setProperty("float", "right");
   var style= img4.style;
   img4.src="https://i.imgur.com/4ISaQvC.png";
-  style.width="100%"
-  style.position= "absolute";
-  style.right="300%";
-  style.setProperty("float", "right");
+  var style = img5.style;
+    style.width="100%"
+    style.position= "absolute";
+    style.setProperty("float", "right");
+    style.right="400%"
+    img5.src="https://i.imgur.com/q9MwXPw.png"
+  var style = img6.style;
+    style.width="100%"
+    style.position= "absolute";
+    style.setProperty("float", "right");
+    style.right="500%"
+    img6.src="https://i.imgur.com/pRfL1ho.png";
   
   var style=hako2row1.style;
   style.width="100%";
