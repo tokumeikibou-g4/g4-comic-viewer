@@ -10,6 +10,7 @@ const ue= document.getElementById("ue");
 const uebuttonleft= document.getElementById("uebuttonleft");
 const uebuttonright= document.getElementById("uebuttonright");
 const title= document.getElementById("title");
+const titlehover=document.getElementById("titlehover");
 const dropzones= document.getElementById("dropzones");
 const naka= document.getElementById("naka");
 const migi= document.getElementById("migi");
@@ -164,7 +165,7 @@ window.onload = function(){
     style.width="80%"
     style.height="100%"
     style.color="white";
-    style.fontSize= 0.8*title.offsetHeight+"px";
+    style.fontSize= 0.6*title.offsetHeight+"px";
     title.textContent="現４ビューワー";
   
   
@@ -291,10 +292,20 @@ window.onload = function(){
     style.height="20%"
     style.setProperty("font-size", "32px")
   });
+  
+  var style = titlehover.style;
+  style.display="none";
+  style.position="fixed";
+  style.left=0;
+  style.top=0
+  style.setProperty("z-index", "5");
+  
   updatenextmangaimg();
 }
 
 function nakaanimate(index){
+  if (index=-1)return;
+  if (index=6)return;
   var rightPercent = index*-100+"%";
   naka.animate(
       [{ right: rightPercent }],
@@ -370,11 +381,8 @@ drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-//drop1.addEventListener("touchmove", indexrightpercent(3, "-300%"));
-//drop2.addEventListener("touchmove", indexrightpercent(2, "-200%"));
-//drop3.addEventListener("touchmove", indexrightpercent(1, "-100%"));
-//drop4.addEventListener("touchmove", indexrightpercent(0, "0%"));
 sita.addEventListener("touchmove", touchmovesita);
+
 function nakabutton2func(a, b, c){
   return (event) => {
     ue.animate(  
@@ -426,14 +434,18 @@ function updatenextmangaimg(){
   nextmangaimg3.src="https://i.imgur.com/sCULIpP.png";
   nextmangaimg4.src="https://i.imgur.com/K5HS79J.png";
 };
+function changetitle(newtitle){
+  title.textContent=newtitle;
+  row2hako.textContent=newtitle;
+  titlehover.textContent=newtitle;
+}
 
 nextbuttons.forEach((nbutton) => {
   nbutton.addEventListener("click", async (event) => {
     var readrow=await fetchtool(nbutton.dataset.row);
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-      row2hako.textContent=readrow[0]
+      changetitle(readrow[0])
     });
   });
   
@@ -456,6 +468,27 @@ uebuttonright.addEventListener("click", async (event) => {
     });
 });
 
+title.addEventListener("mouseover", (event) => {
+  var titlemox = event.clientX;
+  var titlemoy = event.clientY;
+  titlehover.style.display="block";
+  titlehover.style.left=titlemox+"px";
+  titlehover.style.top=titlemoy+"px";
+})
+title.addEventListener("touchstart", (event) => {
+  var titlemox = event.clientX;
+  var titlemoy = event.clientY;
+  titlehover.style.display="block";
+  titlehover.style.left=titlemox+"px";
+  titlehover.style.top=titlemoy+"px";
+})
+title.addEventListener("mouseleave", (event) => {
+  titlehover.style.display="none";  
+})
+title.addEventListener("touchend", (event) => {
+  titlehover.style.display="none";  
+})
+
 
 async function fetchtool(index) {
   // if we haven't fetched yet, do it
@@ -476,31 +509,105 @@ async function fetchtool(index) {
 }
 
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
-nakaoverlay.addEventListener("touchstart",  (event) => {
+nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
   currentnakaright = parseInt(naka.style.right)
 });
-nakaoverlay.addEventListener("touchmove",  (event) => {
+nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.right = Math.floor(currentnakaright - pageswipex1+pageswipex0) + "px";
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
 });
-nakaoverlay.addEventListener("touchend",  (event) => {
+nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
   pageswipex2 = event.changedTouches[0].pageX;
-  
+  naka.style.transform ="translate(0, 0)";
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
     nakaanimate(currentindex+1);
-    alert(currentindex, 1)
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
-    alert(currentindex, 2)
   }else{
     nakaanimate(currentindex);
-    alert(currentindex, 3)
+    if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
+      if (nakabutton2flag===1){
+        nakabutton2func("0%", "0%", 0)(event);
+      }else{
+        nakabutton2func("-10%", "-15%", 1)(event);
+      }
+    }
   }
 });
-console.log(naka.offsetWidth)
+nakabutton1.addEventListener("touchstart",  (event) => {
+  event.preventDefault();
+  pageswipex0 = event.touches[0].pageX;
+  currentnakaright = parseInt(naka.style.right)
+});
+nakabutton1.addEventListener("touchmove",  (event) => {
+  event.preventDefault();
+  pageswipex1 = event.changedTouches[0].pageX;
+  
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
+});
+nakabutton1.addEventListener("touchend",  (event) => {
+  event.preventDefault();
+  pageswipex2 = event.changedTouches[0].pageX;
+  naka.style.transform ="translate(0, 0)";
+  const w = naka.offsetWidth;
+  if (pageswipex2-pageswipex0 > w/2){
+    nakaanimate(currentindex+1);
+  }else if(pageswipex2-pageswipex0 < -w/2){
+    nakaanimate(currentindex-1);
+  }else{
+    nakaanimate(currentindex);
+    if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
+      
+      if (currentindex < endpage-1){
+      currentindex = currentindex+1
+      }
+      nakaanimate(currentindex);
+      if (currentindex >=mainpages){
+      nakabutton2func("-10%", "-15%", 1)(event);
+      scrollbar.style.display="none";  
+      }
+    }
+  }
+});
+nakabutton3.addEventListener("touchstart",  (event) => {
+  event.preventDefault();
+  pageswipex0 = event.touches[0].pageX;
+  currentnakaright = parseInt(naka.style.right)
+});
+nakabutton3.addEventListener("touchmove",  (event) => {
+  event.preventDefault();
+  pageswipex1 = event.changedTouches[0].pageX;
+  
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
+});
+nakabutton3.addEventListener("touchend",  (event) => {
+  event.preventDefault();
+  pageswipex2 = event.changedTouches[0].pageX;
+  naka.style.transform ="translate(0, 0)";
+  const w = naka.offsetWidth;
+  if (pageswipex2-pageswipex0 > w/2){
+    nakaanimate(currentindex+1);
+  }else if(pageswipex2-pageswipex0 < -w/2){
+    nakaanimate(currentindex-1);
+  }else{
+    nakaanimate(currentindex);
+    if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
+      if (nakabutton2flag===1){
+        if (currentindex != 0){
+          currentindex= currentindex-1
+        }
+        nakaanimate(currentindex);
+        if (currentindex <mainpages){
+          nakabutton2func("0%", "0%", 0)(event);
+          scrollbar.style.display="block";
+        }
+      }
+    }
+  }
+});
