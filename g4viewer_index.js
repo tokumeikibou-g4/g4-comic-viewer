@@ -288,24 +288,24 @@ window.onload = function(){
     
   var style = row2hako.style;
     style.setProperty("float", "none");
-    style.width="60%"
-    style.height="20%"
-    style.setProperty("font-size", "32px")
+    style.width="60%";
+    style.height="20%";
+    style.setProperty("font-size", "32px");
   });
   
   var style = titlehover.style;
   style.display="none";
-  style.position="fixed";
+  style.position="absolute";
   style.left=0;
-  style.top=0
+  style.top=0;
   style.setProperty("z-index", "5");
   
   updatenextmangaimg();
 }
 
 function nakaanimate(index){
-  if (index=-1)return;
-  if (index=6)return;
+  if (index==-1)return;
+  if (index==6)return;
   var rightPercent = index*-100+"%";
   naka.animate(
       [{ right: rightPercent }],
@@ -415,7 +415,6 @@ nakabutton3.addEventListener("click", (event) => {
     scrollbar.style.display="block";
   }
 });
-
 nakabutton1.addEventListener("click", (event) => {
   if (currentindex < endpage-1){
     currentindex = currentindex+1
@@ -434,6 +433,7 @@ function updatenextmangaimg(){
   nextmangaimg3.src="https://i.imgur.com/sCULIpP.png";
   nextmangaimg4.src="https://i.imgur.com/K5HS79J.png";
 };
+
 function changetitle(newtitle){
   title.textContent=newtitle;
   row2hako.textContent=newtitle;
@@ -445,7 +445,7 @@ nextbuttons.forEach((nbutton) => {
     var readrow=await fetchtool(nbutton.dataset.row);
     imglist.forEach((imgs, i) => {
       imgs.src=readrow[2+i];
-      changetitle(readrow[0])
+      changetitle(readrow[0]);
     });
   });
   
@@ -509,6 +509,7 @@ async function fetchtool(index) {
 }
 
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
+
 nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
