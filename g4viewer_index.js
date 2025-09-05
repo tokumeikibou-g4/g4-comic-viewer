@@ -55,7 +55,7 @@ const nextmangaimg3=document.getElementById("nextmangaimg3");
 const nextmangaimg4=document.getElementById("nextmangaimg4");
 const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
 const row2hako=document.getElementById("row2hako");
-var pageswipex0=0;
+var pageswipex0 =0;
 var pageswipex1 =0;
 var pageswipex2 =0;
 let currentnakaright;
@@ -151,7 +151,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="現４ビューワー";
+    title.textContent="ver1";
   
   
   var style= sita.style;
@@ -327,7 +327,7 @@ nakabutton3.addEventListener("click", (event) => {
     currentindex= currentindex-1
   }
   nakaanimate(currentindex);
-  if (currentindex <mainpages){
+  if (currentindex < mainpages){
     nakabutton2func("0%", "0%", 0)(event);
     scrollbar.style.display="block";
   }
@@ -337,7 +337,7 @@ nakabutton1.addEventListener("click", (event) => {
     currentindex = currentindex+1
   }
   nakaanimate(currentindex);
-  if (currentindex >=mainpages){
+  if (currentindex >= mainpages){
     nakabutton2func("-10%", "-15%", 1)(event);
     scrollbar.style.display="none";
   }
@@ -364,7 +364,6 @@ nakabutton2.addEventListener("touchend",  (event) => {
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
-    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
       if (nakabutton2flag===1){
         nakabutton2func("0%", "0%", 0)(event);
@@ -395,7 +394,6 @@ nakabutton1.addEventListener("touchend",  (event) => {
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
-    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
       
       if (currentindex < endpage-1){
@@ -430,10 +428,9 @@ nakabutton3.addEventListener("touchend",  (event) => {
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
-    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
-       if (currentindex != 0){
-        currentindex= currentindex-1
+      if (currentindex != 0){
+        currentindex= currentindex-1;
       }
       nakaanimate(currentindex);
       if (currentindex <mainpages){
@@ -460,6 +457,7 @@ title.addEventListener("mouseover", (event) => {
   titlehover.style.top=titlemoy+"px";
 });
 title.addEventListener("touchstart", (event) => {
+  event.preventDefault();
   var titlemox = event.clientX;
   var titlemoy = event.clientY;
   titlehover.style.display="block";
@@ -470,6 +468,7 @@ title.addEventListener("mouseleave", (event) => {
   titlehover.style.display="none";  
 });
 title.addEventListener("touchend", (event) => {
+  event.preventDefault();
   titlehover.style.display="none";  
 });
 
@@ -498,16 +497,25 @@ pages.forEach((page, i) => {
   page.addEventListener("dragend", dragend(i));
 });
 pages.forEach((page, i) => {
-  page.addEventListener("touchstart", dragstart(i));
-  page.addEventListener("touchend", dragend(i));
+  page.addEventListener("touchstart", (event)=> {
+    event.preventDefault();
+    dragstart(i);
+  });
+  page.addEventListener("touchmove", (event)=> {
+    event.preventDefault();
+    touchmovesita(event);
+  })
+  page.addEventListener("touchend", (event)=> {
+    event.preventDefault();
+    dragend(i);
+  });
 });
 function touchmovesita(event){
-  event.preventDefault();
-  if(touchmovesitaflag===0) return;
-    const touch = event.touches[0]; 
-    const rect = hako.getBoundingClientRect();
-    const x = touch.clientX - rect.left; // x position relative to hako
-    const width = rect.width;
+  if(touchmovesitaflag==0) return;
+  const touch = event.touches[0]; 
+  const rect = hako.getBoundingClientRect();
+  const x = touch.clientX - rect.left; // x position relative to hako
+  const width = rect.width;
     
     // Determine which page index the touch is over
     let index, rightPercent;
@@ -526,13 +534,13 @@ function touchmovesita(event){
         rightPercent = "0%";
     }
 
-    nakaanimate(index)
+    nakaanimate(index);
 };
 drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-sita.addEventListener("touchmove", touchmovesita());
+
 
 //mangahako2
 async function fetchtool(index) {
