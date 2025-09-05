@@ -164,7 +164,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.setProperty("font-size", 0.8*title.offsetHeight+"px")
-    style.background="red";
+    style.backgroundColor="red";
   
   
   var style= sita.style;
@@ -287,6 +287,8 @@ window.onload = function(){
   var style = row2hako.style;
     style.setProperty("float", "none");
     style.width="60%"
+    style.height="20%"
+    style.setProperty("font-size", "32px")
   });
   updatenextmangaimg();
 }
