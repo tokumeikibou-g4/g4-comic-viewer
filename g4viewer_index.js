@@ -165,8 +165,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.8*title.offsetHeight+"px";
-    
-    alert(title.offsetHeight);
+    title.textContent="現４ビューワー";
   
   
   var style= sita.style;
@@ -479,7 +478,7 @@ async function fetchtool(index) {
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
 nakaoverlay.addEventListener("touchstart",  (event) => {
   event.preventDefault();
-  const pageswipex0 = event.touches[0].pageX;
+  pageswipex0 = event.touches[0].pageX;
   currentnakaright = parseInt(naka.style.right)
 });
 nakaoverlay.addEventListener("touchmove",  (event) => {
@@ -495,9 +494,13 @@ nakaoverlay.addEventListener("touchend",  (event) => {
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
     nakaanimate(currentindex+1);
+    alert(currentindex, 1)
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
+    alert(currentindex, 2)
   }else{
     nakaanimate(currentindex);
+    alert(currentindex, 3)
   }
 });
+console.log(naka.offsetWidth)
