@@ -76,6 +76,7 @@ window.onload = function(){
   var style= hako.style;
     style.border="solid 0.5px "
     style.height= "80%";
+    style.top="10%";
     var w = hako.offsetHeight*64/91; //koko dake ChatGPT ni oshiete moratta
     style.width=parseInt(w)+"px";
     style.position= "relative";
@@ -151,7 +152,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.4";
+    title.textContent="ver1.5";
   
   
   var style= sita.style;
@@ -278,8 +279,8 @@ window.onload = function(){
   var style = titlehover.style;
     style.display="none";
     style.position="absolute";
-    style.left=0;
     style.setProperty("z-index", "5");
+    style.top=0;
   
   updatenextmangaimg();
   
@@ -294,6 +295,7 @@ function nakaanimate(index){
       [{ right: rightPercent }],
       { duration: 200, fill: "forwards" }
     );
+  naka.style.right=rightPercent;
   
   pages.forEach(page => page.style.display = "none");
   if (index<4){
@@ -351,7 +353,7 @@ nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
+  naka.style.right = (currentindex)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -382,7 +384,7 @@ nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
+  naka.style.right = (currentindex)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -416,7 +418,7 @@ nakabutton3.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
+  naka.style.right = (currentindex)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
   //naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
@@ -456,14 +458,12 @@ title.addEventListener("mousemove", (event) => {
   var titlemox = event.clientX;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
-  titlehover.style.top=1.5*ue.offsetHeight+"px"
 });
 title.addEventListener("touchmove", (event) => {
   event.preventDefault();
   var titlemox = event.changedTouches[0].clientX;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
-  titlehover.style.top=1.5*ue.offsetHeight+"px"
 });
 title.addEventListener("mouseleave", (event) => {
   titlehover.style.display="none";  
