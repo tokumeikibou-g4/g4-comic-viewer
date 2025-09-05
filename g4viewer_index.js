@@ -534,7 +534,7 @@ drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-sita.addEventListener("touchmove", touchmovesita);
+sita.addEventListener("touchmove", touchmovesita();
 
 //mangahako2
 async function fetchtool(index) {
@@ -580,6 +580,7 @@ nextbuttons.forEach((nbutton, i) => {
     await pushnextbutton(i);
   });
 });
+
 
 
 
