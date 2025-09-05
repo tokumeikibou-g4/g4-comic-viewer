@@ -303,6 +303,7 @@ window.onload = function(){
   updatenextmangaimg();
 }
 
+//naka
 function nakaanimate(index){
   if (index==-1)return;
   if (index==6)return;
@@ -319,69 +320,6 @@ function nakaanimate(index){
     
   currentindex = index;
 } 
-function dragstart(index){
-  return (event) => {
-  touchmovesitaflag=1
-  pages[index].style.opacity="0.7";
-  //scrollbar.style.display="block";
-  }
-}
-function dragend(index){
-  return (event) => {
-  touchmovesitaflag=0
-  pages[index].style.opacity="1";
-  //scrollbar.style.display="none";
-  }
-}
-function indexrightpercent(index, rightPercent){
-  return (event) => {
-    event.preventDefault();
-    
-    nakaanimate(index)
-  };
-}
-
-
-pages.forEach((page, i) => {
-  page.addEventListener("dragstart", dragstart(i));
-  page.addEventListener("dragend", dragend(i));
-});
-pages.forEach((page, i) => {
-  page.addEventListener("touchstart", dragstart(i));
-  page.addEventListener("touchend", dragend(i));
-});
-function touchmovesita(event){
-  event.preventDefault();
-  if(touchmovesitaflag===0) return;
-    const touch = event.touches[0]; 
-    const rect = hako.getBoundingClientRect();
-    const x = touch.clientX - rect.left; // x position relative to hako
-    const width = rect.width;
-    
-    // Determine which page index the touch is over
-    let index, rightPercent;
-    if (x < width * 0.17) {          // drop4 area
-        index = 3;
-        rightPercent = "-300%";
-    } else if (x < width * 0.50) {   // drop3 area
-        index = 2;
-        rightPercent = "-200%";
-    } else if (x < width * 0.83) {   // drop2 area
-        index = 1;
-        rightPercent = "-100%";
-    } else {                         // drop1 area
-        
-        index = 0;
-        rightPercent = "0%";
-    }
-
-    nakaanimate(index)
-}
-drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
-drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
-drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
-drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
-sita.addEventListener("touchmove", touchmovesita);
 
 function nakabutton2func(a, b, c){
   return (event) => {
@@ -404,7 +342,6 @@ nakabutton2.addEventListener("click", (event) => {
   }
 });
 
-
 nakabutton3.addEventListener("click", (event) => {
   if (currentindex != 0){
     currentindex= currentindex-1
@@ -425,89 +362,6 @@ nakabutton1.addEventListener("click", (event) => {
     scrollbar.style.display="none";
   }
 });
-
-
-function updatenextmangaimg(){
-  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png";
-  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png";
-  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png";
-  nextmangaimg4.src="https://i.imgur.com/K5HS79J.png";
-};
-
-function changetitle(newtitle){
-  title.textContent=newtitle;
-  row2hako.textContent=newtitle;
-  titlehover.textContent=newtitle;
-}
-
-nextbuttons.forEach((nbutton) => {
-  nbutton.addEventListener("click", async (event) => {
-    var readrow=await fetchtool(nbutton.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      changetitle(readrow[0]);
-    });
-  });
-  
-});
-uebuttonleft.addEventListener("click", async (event) => {
-  var readrow=await fetchtool(nextbutton1.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-      row2hako.textContent=readrow[0]
-      
-    });
-});
-uebuttonright.addEventListener("click", async (event) => {
-  var readrow=await fetchtool(nextbutton4.dataset.row);
-    imglist.forEach((imgs, i) => {
-      imgs.src=readrow[2+i];
-      title.textContent=readrow[0];
-      row2hako.textContent=readrow[0]
-    });
-});
-
-title.addEventListener("mouseover", (event) => {
-  var titlemox = event.clientX;
-  var titlemoy = event.clientY;
-  titlehover.style.display="block";
-  titlehover.style.left=titlemox+"px";
-  titlehover.style.top=titlemoy+"px";
-})
-title.addEventListener("touchstart", (event) => {
-  var titlemox = event.clientX;
-  var titlemoy = event.clientY;
-  titlehover.style.display="block";
-  titlehover.style.left=titlemox+"px";
-  titlehover.style.top=titlemoy+"px";
-})
-title.addEventListener("mouseleave", (event) => {
-  titlehover.style.display="none";  
-})
-title.addEventListener("touchend", (event) => {
-  titlehover.style.display="none";  
-})
-
-
-async function fetchtool(index) {
-  // if we haven't fetched yet, do it
-  const text = await fetch("title_thumbail_4pages.txt").then(res => res.text())
-
-  var cachedRows = text
-      .split("\n")                         // split into rows
-      .map(line => line.trim())            // trim whitespace
-      .filter(line => line.length > 0);    // skip empty rows
-  
-  // if index out of bounds, return null
-  if (index < 0 || index >= cachedRows.length) {
-    return null;
-  }
-
-  // return that row split by commas
-  return cachedRows[index].split(",").map(item => item.trim());
-}
-
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
 
 nakabutton2.addEventListener("touchstart",  (event) => {
@@ -612,3 +466,141 @@ nakabutton3.addEventListener("touchend",  (event) => {
     }
   }
 });
+
+//ue**************************************************************
+uebuttonleft.addEventListener("click", async (event) => {
+  await pushnextbutton(0);
+});
+uebuttonright.addEventListener("click", async (event) => {
+  await pushnextbutton(3);
+});
+
+title.addEventListener("mouseover", (event) => {
+  var titlemox = event.clientX;
+  var titlemoy = event.clientY;
+  titlehover.style.display="block";
+  titlehover.style.left=titlemox+"px";
+  titlehover.style.top=titlemoy+"px";
+})
+title.addEventListener("touchstart", (event) => {
+  var titlemox = event.clientX;
+  var titlemoy = event.clientY;
+  titlehover.style.display="block";
+  titlehover.style.left=titlemox+"px";
+  titlehover.style.top=titlemoy+"px";
+})
+title.addEventListener("mouseleave", (event) => {
+  titlehover.style.display="none";  
+})
+title.addEventListener("touchend", (event) => {
+  titlehover.style.display="none";  
+})
+
+//sita
+function dragstart(index){
+  return (event) => {
+  touchmovesitaflag=1
+  pages[index].style.opacity="0.7";
+  }
+}
+function dragend(index){
+  return (event) => {
+  touchmovesitaflag=0
+  pages[index].style.opacity="1";
+  }
+}
+function indexrightpercent(index, rightPercent){
+  return (event) => {
+    event.preventDefault();
+    
+    nakaanimate(index)
+  };
+}
+pages.forEach((page, i) => {
+  page.addEventListener("dragstart", dragstart(i));
+  page.addEventListener("dragend", dragend(i));
+});
+pages.forEach((page, i) => {
+  page.addEventListener("touchstart", dragstart(i));
+  page.addEventListener("touchend", dragend(i));
+});
+function touchmovesita(event){
+  event.preventDefault();
+  if(touchmovesitaflag===0) return;
+    const touch = event.touches[0]; 
+    const rect = hako.getBoundingClientRect();
+    const x = touch.clientX - rect.left; // x position relative to hako
+    const width = rect.width;
+    
+    // Determine which page index the touch is over
+    let index, rightPercent;
+    if (x < width * 0.17) {          // drop4 area
+        index = 3;
+        rightPercent = "-300%";
+    } else if (x < width * 0.50) {   // drop3 area
+        index = 2;
+        rightPercent = "-200%";
+    } else if (x < width * 0.83) {   // drop2 area
+        index = 1;
+        rightPercent = "-100%";
+    } else {                         // drop1 area
+        
+        index = 0;
+        rightPercent = "0%";
+    }
+
+    nakaanimate(index)
+}
+drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
+drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
+drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
+drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
+sita.addEventListener("touchmove", touchmovesita);
+
+//mangahako2
+async function fetchtool(index) {
+  // if we haven't fetched yet, do it
+  const text = await fetch("title_thumbail_4pages.txt").then(res => res.text())
+
+  var cachedRows = text
+      .split("\n")                         // split into rows
+      .map(line => line.trim())            // trim whitespace
+      .filter(line => line.length > 0);    // skip empty rows
+  
+  // if index out of bounds, return null
+  if (index < 0 || index >= cachedRows.length) {
+    return null;
+  }
+
+  // return that row split by commas
+  return cachedRows[index].split(",").map(item => item.trim());
+}
+
+function updatenextmangaimg(){
+  nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png";
+  nextmangaimg2.src="https://i.imgur.com/0ViUKWm.png";
+  nextmangaimg3.src="https://i.imgur.com/sCULIpP.png";
+  nextmangaimg4.src="https://i.imgur.com/K5HS79J.png";
+};
+
+function changetitle(newtitle){
+  title.textContent=newtitle;
+  row2hako.textContent=newtitle;
+  titlehover.textContent=newtitle;
+}
+
+async function pushnextbutton(buttonnum){
+  var readrow=await fetchtool(nextbuttons[buttonnum].dataset.row);
+  imglist.forEach((imgs, i) => {
+    imgs.src=readrow[2+i];
+  });
+  changetitle(readrow[0]);
+}
+nextbuttons.forEach((nbutton, i) => {
+  nbutton.addEventListener("click", async (event) => {
+    await pushnextbutton(i);
+  });
+});
+
+
+
