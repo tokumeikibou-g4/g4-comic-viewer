@@ -151,7 +151,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.1";
+    title.textContent="ver1.2";
   
   
   var style= sita.style;
@@ -345,13 +345,12 @@ nakabutton1.addEventListener("click", (event) => {
 nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
-  currentnakaright = parseInt(naka.style.right)
 });
 nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(- pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -375,13 +374,12 @@ nakabutton2.addEventListener("touchend",  (event) => {
 nakabutton1.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
-  currentnakaright = parseInt(naka.style.right)
 });
 nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(-pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -409,13 +407,12 @@ nakabutton1.addEventListener("touchend",  (event) => {
 nakabutton3.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
-  currentnakaright = parseInt(naka.style.right)
 });
 nakabutton3.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(- pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
   event.preventDefault();
