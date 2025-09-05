@@ -151,7 +151,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.3";
+    title.textContent="ver1.4";
   
   
   var style= sita.style;
@@ -282,6 +282,7 @@ window.onload = function(){
     style.setProperty("z-index", "5");
   
   updatenextmangaimg();
+  
 }
 
 //naka
@@ -350,18 +351,20 @@ nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
+  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
   pageswipex2 = event.changedTouches[0].clientX;
-  naka.style.transform ="translate(0, 0)";
+  //naka.style.transform ="translate(0, 0)";
+  
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
     nakaanimate(currentindex+1);
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
+    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
       if (nakabutton2flag===1){
         nakabutton2func("0%", "0%", 0)(event);
@@ -379,18 +382,19 @@ nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
+  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
   event.preventDefault();
   pageswipex2 = event.changedTouches[0].clientX;
-  naka.style.transform ="translate(0, 0)";
+  //naka.style.transform ="translate(0, 0)";
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
     nakaanimate(currentindex+1);
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
+    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
       
       if (currentindex < endpage-1){
@@ -412,7 +416,8 @@ nakabutton3.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
+  naka.style.right = (currentindex-1)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
+  //naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -424,6 +429,7 @@ nakabutton3.addEventListener("touchend",  (event) => {
   }else if(pageswipex2-pageswipex0 < -w/2){
     nakaanimate(currentindex-1);
   }else{
+    nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
       if (currentindex != 0){
         currentindex= currentindex-1;
