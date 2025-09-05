@@ -352,7 +352,7 @@ nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -383,7 +383,7 @@ nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -418,7 +418,7 @@ nakabutton3.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0))}px, 0)";
+  naka.style.transform = "translate(${Math.floor(currentnakaright - pageswipex1+pageswipex0)}px, 0)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -432,15 +432,13 @@ nakabutton3.addEventListener("touchend",  (event) => {
   }else{
     nakaanimate(currentindex);
     if(pageswipex2-pageswipex0 < w/4 && pageswipex2-pageswipex0 > -w/4){
-      if (nakabutton2flag===1){
-        if (currentindex != 0){
-          currentindex= currentindex-1
-        }
-        nakaanimate(currentindex);
-        if (currentindex <mainpages){
-          nakabutton2func("0%", "0%", 0)(event);
-          scrollbar.style.display="block";
-        }
+       if (currentindex != 0){
+        currentindex= currentindex-1
+      }
+      nakaanimate(currentindex);
+      if (currentindex <mainpages){
+        nakabutton2func("0%", "0%", 0)(event);
+        scrollbar.style.display="block";
       }
     }
   }
@@ -580,8 +578,6 @@ nextbuttons.forEach((nbutton, i) => {
     await pushnextbutton(i);
   });
 });
-
-
 
 
 
