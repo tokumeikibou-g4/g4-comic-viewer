@@ -67,6 +67,7 @@ const row2hako=document.getElementById("row2hako");
 var pageswipex0=0;
 var pageswipex1 =0;
 var pageswipex2 =0;
+let currentnakaright;
 
 window.onload = function(){  
   var style= mangahako.style;
@@ -163,8 +164,9 @@ window.onload = function(){
     style.width="80%"
     style.height="100%"
     style.color="white";
-    style.setProperty("font-size", 0.8*title.offsetHeight+"px")
-    style.backgroundColor="red";
+    style.fontSize= 0.8*title.offsetHeight+"px";
+    
+    alert(title.offsetHeight);
   
   
   var style= sita.style;
@@ -478,13 +480,13 @@ async function fetchtool(index) {
 nakaoverlay.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   const pageswipex0 = event.touches[0].pageX;
+  currentnakaright = parseInt(naka.style.right)
 });
 nakaoverlay.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].pageX;
   
-  let current = parseInt(naka.style.right) || 0; // fallback to 0 if empty
-  naka.style.right = Math.floor(current - pageswipex1+pageswipex0) + "px";
+  naka.style.right = Math.floor(currentnakaright - pageswipex1+pageswipex0) + "px";
 });
 nakaoverlay.addEventListener("touchend",  (event) => {
   event.preventDefault();
@@ -492,10 +494,10 @@ nakaoverlay.addEventListener("touchend",  (event) => {
   
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
-    naka.animate(currentindex+1);
+    nakaanimate(currentindex+1);
   }else if(pageswipex2-pageswipex0 < -w/2){
-    naka.animate(currentindex-1);
+    nakaanimate(currentindex-1);
   }else{
-    naka.animate(currentindex);
+    nakaanimate(currentindex);
   }
 });
