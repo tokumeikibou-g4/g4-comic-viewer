@@ -161,9 +161,10 @@ window.onload = function(){
     style.setProperty("font-size", uebuttonright.offsetHeight+"px")
   var style= title.style;
     style.width="80%"
-    style.height="60%"
+    style.height="100%"
     style.color="white";
-    style.setProperty("font-size", title.offsetHeight+"px")
+    style.setProperty("font-size", 0.8*title.offsetHeight+"px")
+    style.background="red";
   
   
   var style= sita.style;
