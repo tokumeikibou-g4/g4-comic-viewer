@@ -151,7 +151,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1";
+    title.textContent="ver1.1";
   
   
   var style= sita.style;
@@ -279,7 +279,6 @@ window.onload = function(){
     style.display="none";
     style.position="absolute";
     style.left=0;
-    style.top=0;
     style.setProperty("z-index", "5");
   
   updatenextmangaimg();
@@ -449,20 +448,21 @@ uebuttonright.addEventListener("click", async (event) => {
   await pushnextbutton(3);
 });
 
-title.addEventListener("mouseover", (event) => {
-  var titlemox = event.clientX;
-  var titlemoy = event.clientY;
-  titlehover.style.display="block";
-  titlehover.style.left=titlemox+"px";
-  titlehover.style.top=titlemoy+"px";
-});
-title.addEventListener("touchstart", (event) => {
+title.addEventListener("mousemove", (event) => {
   event.preventDefault();
   var titlemox = event.clientX;
   var titlemoy = event.clientY;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
-  titlehover.style.top=titlemoy+"px";
+  titlehover.style.top=1.5*ue.offsetHeight+"px"
+});
+title.addEventListener("touchmove", (event) => {
+  event.preventDefault();
+  var titlemox = event.clientX;
+  var titlemoy = event.clientY;
+  titlehover.style.display="block";
+  titlehover.style.left=titlemox+"px";
+  titlehover.style.top=1.5*ue.offsetHeight+"px"
 });
 title.addEventListener("mouseleave", (event) => {
   titlehover.style.display="none";  
@@ -497,18 +497,8 @@ pages.forEach((page, i) => {
   page.addEventListener("dragend", dragend(i));
 });
 pages.forEach((page, i) => {
-  page.addEventListener("touchstart", (event)=> {
-    event.preventDefault();
-    dragstart(i);
-  });
-  page.addEventListener("touchmove", (event)=> {
-    event.preventDefault();
-    touchmovesita(event);
-  })
-  page.addEventListener("touchend", (event)=> {
-    event.preventDefault();
-    dragend(i);
-  });
+  page.addEventListener("touchstart", dragstart(i));
+  page.addEventListener("touchend", dragend(i));
 });
 function touchmovesita(event){
   if(touchmovesitaflag==0) return;
@@ -540,6 +530,7 @@ drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
 drop4.addEventListener("dragover", indexrightpercent(0, "0%"));
+sita.addEventListener("touchmove", touchmovesita);
 
 
 //mangahako2
