@@ -483,7 +483,7 @@ nakaoverlay.addEventListener("touchmove",  (event) => {
   let current = parseInt(naka.style.right) || 0; // fallback to 0 if empty
   naka.style.right = Math.floor(current - pageswipex1+pageswipex0) + "px";
 });
-nakaoverlay.addEventListener("touchmove",  (event) => {
+nakaoverlay.addEventListener("touchend",  (event) => {
   event.preventDefault();
   pageswipex2 = event.changedTouches[0].pageX;
   
