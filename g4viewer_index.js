@@ -1,5 +1,4 @@
 //variables
-//const let var zenzen siranai 
 const mangahako= document.getElementById("mangahako");
 const mangahako2 = document.getElementById("mangahako2");
 const hako= document.getElementById("hako");
@@ -18,12 +17,10 @@ const hidari= document.getElementById("hidari");
 const sita= document.getElementById("sita");
 const sitabar= document.getElementById("sitabar");
 const scrollbar= document.getElementById("scrollbar");
-
 const drop1=document.getElementById("drop1");
 const drop2=document.getElementById("drop2");
 const drop3=document.getElementById("drop3");
 const drop4=document.getElementById("drop4");
-
 const img1=document.getElementById("img1");
 const img2=document.getElementById("img2");
 const img3=document.getElementById("img3");
@@ -33,7 +30,6 @@ const defsrc="https://i.imgur.com/wbEPdz9.png"
 var deftitle="現４ビューワーへようこそ！！"
 const img5=document.getElementById("img5");
 const img6=document.getElementById("img6");
-
 const page1=document.getElementById("page1");
 const page2=document.getElementById("page2");
 const page3=document.getElementById("page3");
@@ -43,28 +39,22 @@ var mainpages=4;
 var endpage=6;
 var touchmovesitaflag=0;
 var currentindex=0;
-
 const nakaoverlay=document.getElementById("nakaoverlay");
 const nakabutton1=document.getElementById("nakabutton1");
 const nakabutton2=document.getElementById("nakabutton2");
 const nakabutton3=document.getElementById("nakabutton3");
 let nakabutton2flag=0;
-
 const nextbutton1=document.getElementById("nextbutton1");
 const nextbutton2=document.getElementById("nextbutton2");
 const nextbutton3=document.getElementById("nextbutton3");
 const nextbutton4=document.getElementById("nextbutton4");
 const nextbuttons=[nextbutton1, nextbutton2, nextbutton3, nextbutton4];
-
 const nextmangaimg1=document.getElementById("nextmangaimg1");
 const nextmangaimg2=document.getElementById("nextmangaimg2");
 const nextmangaimg3=document.getElementById("nextmangaimg3");
 const nextmangaimg4=document.getElementById("nextmangaimg4");
 const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
-
-
 const row2hako=document.getElementById("row2hako");
-
 var pageswipex0=0;
 var pageswipex1 =0;
 var pageswipex2 =0;
@@ -72,26 +62,25 @@ let currentnakaright;
 
 window.onload = function(){  
   var style= mangahako.style;
-  style.width= "60%";
-  style.height="100%";
-  style.setProperty("justify-content", "center");
-  style.display="flex";
-  style.float="left";
+    style.width= "60%";
+    style.height="100%";
+    style.setProperty("justify-content", "center");
+    style.display="flex";
+    style.float="left";
   var style= mangahako2.style;
-  style.width= "40%";
-  style.height="100%";
-  style.setProperty("justify-content", "center");
-  style.alignItems="center";
-  style.display="flex";
+    style.width= "40%";
+    style.height="100%";
+    style.setProperty("justify-content", "center");
+    style.alignItems="center";
+    style.display="flex";
   var style= hako.style;
-  style.border="solid 0.5px "
-  style.height= "80%";
-  var w = hako.offsetHeight*64/91; //koko dake ChatGPT ni oshiete moratta
-  style.width=parseInt(w)+"px";
-  style.position= "relative";
-  style.display="flex";
-  style.overflow= "hidden";
-  
+    style.border="solid 0.5px "
+    style.height= "80%";
+    var w = hako.offsetHeight*64/91; //koko dake ChatGPT ni oshiete moratta
+    style.width=parseInt(w)+"px";
+    style.position= "relative";
+    style.display="flex";
+    style.overflow= "hidden";
   if (w>window.innerWidth*0.6){
     mangahako.style.float="none";
     mangahako.style.width= "100%";
@@ -105,48 +94,45 @@ window.onload = function(){
   style.position="relative";
   
   var style = nakaoverlay.style;
-  style.width= "100%";
-  style.height= "100%";
-  style.position="absolute";
-  style.display="flex";
+    style.width= "100%";
+    style.height= "100%";
+    style.position="absolute";
+    style.display="flex";
   var style = nakabutton1.style;
-  style.width= "25%";
-  style.height= "100%";
-  style.display="flex";
-  style.setProperty("z-index", "0");
+    style.width= "25%";
+    style.height= "100%";
+    style.display="flex";
+    style.setProperty("z-index", "0");
   var style = nakabutton2.style;
-  style.width= "50%";
-  style.height= "100%";
-  style.display="flex";
-  style.setProperty("z-index", "0");
+    style.width= "50%";
+    style.height= "100%";
+    style.display="flex";
+    style.setProperty("z-index", "0");
   var style = nakabutton3.style;
-  style.width= "25%";
-  style.height= "100%";
-  style.display="flex";
-  style.setProperty("z-index", "0");
+    style.width= "25%";
+    style.height= "100%";
+    style.display="flex";
+    style.setProperty("z-index", "0");
   
   var style= naka.style;
-  style.width= "100%";
-  style.height= "100%";
-  style.position= "absolute";
-  style.display="flex";
-  style.setProperty("z-index", "-1");
+    style.width= "100%";
+    style.height= "100%";
+    style.position= "absolute";
+    style.display="flex";
+    style.setProperty("z-index", "-1");
   
   var style= ue.style;
-  style.top="0";
-  style.position= "absolute";
-  style.display= "flex";
-  //style.alignItems="center";
-  style.setProperty("justify-content", "space-between");
-  style.width= "100%";
-  style.height= "10%";
-  style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
-  style.setProperty("z-index", "1");
-  style.overflow="hidden";
+    style.top="0";
+    style.position= "absolute";
+    style.display= "flex";
+    style.width= "100%";
+    style.height= "10%";
+    style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8))");
+    style.setProperty("z-index", "1");
+    style.overflow="hidden";
   var style= uebuttonleft.style;
     style.width="10%"
     style.height=uebuttonleft.offsetWidth+"px";
-    //style.padding="0"
     style.float="left"
     style.border="none";
     style.backgroundColor="inherit";
@@ -155,11 +141,10 @@ window.onload = function(){
     style.setProperty("font-size", uebuttonleft.offsetHeight+"px")
   var style= uebuttonright.style;
     style.width="10%"
-    //style.height="80%"
     style.border="none";
     style.backgroundColor="inherit";
     style.color="white";
-   style.height=uebuttonright.offsetWidth+"px";
+    style.height=uebuttonright.offsetWidth+"px";
     style.setProperty("font-size", uebuttonright.offsetHeight+"px")
   var style= title.style;
     style.width="80%"
@@ -170,40 +155,39 @@ window.onload = function(){
   
   
   var style= sita.style;
-  style.width= "100%";
-  style.height= "15%";
-  style.position= "absolute";
-  style.bottom="0";
-  style.setProperty("z-index", "1");
-  style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9))");
+    style.width= "100%";
+    style.height= "15%";
+    style.position= "absolute";
+    style.bottom="0";
+    style.setProperty("z-index", "1");
+    style.setProperty("background", "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9))");
   var style= dropzones.style;
-  style.width= "100%";
-  style.height= "100%";
-  style.position= "absolute";
-  style.display="flex";
-  style.setProperty("z-index", "2");
+    style.width= "100%";
+    style.height= "100%";
+    style.position= "absolute";
+    style.display="flex";
+    style.setProperty("z-index", "2");
  var style= scrollbar.style;
-  style.width= "100%";
-  style.height= "30%";
-  style.backgroundColor= "gray";
-  //style.display="none";
-  style.opacity="0.6";
+    style.width= "100%";
+    style.height= "30%";
+    style.backgroundColor= "gray";
+    style.opacity="0.6";
   
   var style=drop1.style;
-  style.width="17%"
+    style.width="17%"
   var style=drop2.style;
-  style.width="33%"
+    style.width="33%"
   var style=drop3.style;
-  style.width="33%"
+    style.width="33%"
   var style=drop4.style;
-  style.width="17%"
+    style.width="17%"
   
   var style=sitabar.style;
-  style.width= "100%";
-  style.height= "70%";
-  style.display= "flex";
-  style.setProperty("justify-content", "space-between");
-  
+    style.width= "100%";
+    style.height= "70%";
+    style.display= "flex";
+    style.setProperty("justify-content", "space-between");
+
   pages.forEach(page => {
     var style=page.style;
     page.style.width="5%";
@@ -234,14 +218,13 @@ window.onload = function(){
     style.right=(i)*100+"%"
   });
   var style= img1.style;
-  img1.src=defsrc;
+    img1.src=defsrc;
   var style= img2.style;
-  img2.src="https://i.imgur.com/jWGOFkP.png";
+    img2.src="https://i.imgur.com/jWGOFkP.png";
   var style= img3.style;
-  img3.src="https://i.imgur.com/sE3XVlT.png";
-  style.setProperty("float", "right");
+    img3.src="https://i.imgur.com/sE3XVlT.png";
   var style= img4.style;
-  img4.src="https://i.imgur.com/4ISaQvC.png";
+    img4.src="https://i.imgur.com/4ISaQvC.png";
   var style = img5.style;
     style.width="100%"
     style.position= "absolute";
@@ -256,49 +239,48 @@ window.onload = function(){
     img6.src="https://i.imgur.com/pRfL1ho.png";
   
   var style=hako2row1.style;
-  style.width="100%";
-  style.height="50%";
+    style.width="100%";
+    style.height="50%";
   var style=hako2row2.style;
-  style.width="100%";
-  style.height="50%";
+    style.width="100%";
+    style.height="50%";
   nextbuttons.forEach(nbutton =>{
     var style=nbutton.style;
     style.width="35%";
     style.height="35%";
-    style.position="absolute"
+    style.position="absolute";
   });
   var style=nextbutton1.style
-  style.top="10%";
-  style.left="10%";
+    style.top="10%";
+    style.left="10%";
   var style=nextbutton2.style
-  style.top="10%";
-  style.right="10%";
-  var style=nextbutton3.style
-  style.bottom="10%";
-  style.left="10%";
-  var style=nextbutton4.style
-  style.bottom="10%";
-  style.right="10%";
+    style.top="10%";
+    style.right="10%";
+  var style=nextbutton3.style;
+    style.bottom="10%";
+    style.left="10%";
+  var style=nextbutton4.style;
+    style.bottom="10%";
+    style.right="10%";
   nextimgs.forEach(nimg =>{
     var style=nimg.style;    
     style.width="100%";
     style.height="100%";
     style.border="6px solid #000";
     style.borderRadius="16px";
-    
+  });
   var style = row2hako.style;
     style.setProperty("float", "none");
     style.width="60%";
     style.height="20%";
     style.setProperty("font-size", "32px");
-  });
   
   var style = titlehover.style;
-  style.display="none";
-  style.position="absolute";
-  style.left=0;
-  style.top=0;
-  style.setProperty("z-index", "5");
+    style.display="none";
+    style.position="absolute";
+    style.left=0;
+    style.top=0;
+    style.setProperty("z-index", "5");
   
   updatenextmangaimg();
 }
@@ -320,7 +302,6 @@ function nakaanimate(index){
     
   currentindex = index;
 } 
-
 function nakabutton2func(a, b, c){
   return (event) => {
     ue.animate(  
@@ -341,7 +322,6 @@ nakabutton2.addEventListener("click", (event) => {
     nakabutton2func("-10%", "-15%", 1)(event);
   }
 });
-
 nakabutton3.addEventListener("click", (event) => {
   if (currentindex != 0){
     currentindex= currentindex-1
@@ -363,7 +343,6 @@ nakabutton1.addEventListener("click", (event) => {
   }
 });
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
-
 nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].pageX;
@@ -481,20 +460,20 @@ title.addEventListener("mouseover", (event) => {
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
   titlehover.style.top=titlemoy+"px";
-})
+});
 title.addEventListener("touchstart", (event) => {
   var titlemox = event.clientX;
   var titlemoy = event.clientY;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
   titlehover.style.top=titlemoy+"px";
-})
+});
 title.addEventListener("mouseleave", (event) => {
   titlehover.style.display="none";  
-})
+});
 title.addEventListener("touchend", (event) => {
   titlehover.style.display="none";  
-})
+});
 
 //sita
 function dragstart(index){
@@ -502,20 +481,20 @@ function dragstart(index){
   touchmovesitaflag=1
   pages[index].style.opacity="0.7";
   }
-}
+};
 function dragend(index){
   return (event) => {
   touchmovesitaflag=0
   pages[index].style.opacity="1";
   }
-}
+};
 function indexrightpercent(index, rightPercent){
   return (event) => {
     event.preventDefault();
     
     nakaanimate(index)
   };
-}
+};
 pages.forEach((page, i) => {
   page.addEventListener("dragstart", dragstart(i));
   page.addEventListener("dragend", dragend(i));
@@ -550,7 +529,7 @@ function touchmovesita(event){
     }
 
     nakaanimate(index)
-}
+};
 drop1.addEventListener("dragover", indexrightpercent(3, "-300%"));
 drop2.addEventListener("dragover", indexrightpercent(2, "-200%"));
 drop3.addEventListener("dragover", indexrightpercent(1, "-100%"));
@@ -574,7 +553,7 @@ async function fetchtool(index) {
 
   // return that row split by commas
   return cachedRows[index].split(",").map(item => item.trim());
-}
+};
 
 function updatenextmangaimg(){
   nextmangaimg1.src="https://i.imgur.com/oPSkZxa.png";
@@ -587,7 +566,7 @@ function changetitle(newtitle){
   title.textContent=newtitle;
   row2hako.textContent=newtitle;
   titlehover.textContent=newtitle;
-}
+};
 
 async function pushnextbutton(buttonnum){
   var readrow=await fetchtool(nextbuttons[buttonnum].dataset.row);
