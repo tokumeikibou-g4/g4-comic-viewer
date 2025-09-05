@@ -151,7 +151,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.2";
+    title.textContent="ver1.3";
   
   
   var style= sita.style;
@@ -344,17 +344,17 @@ nakabutton1.addEventListener("click", (event) => {
 //https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
 nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
-  pageswipex0 = event.touches[0].pageX;
+  pageswipex0 = event.touches[0].clientX;
 });
 nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
-  pageswipex1 = event.changedTouches[0].pageX;
+  pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(- pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
   event.preventDefault();
-  pageswipex2 = event.changedTouches[0].pageX;
+  pageswipex2 = event.changedTouches[0].clientX;
   naka.style.transform ="translate(0, 0)";
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
@@ -373,17 +373,17 @@ nakabutton2.addEventListener("touchend",  (event) => {
 });
 nakabutton1.addEventListener("touchstart",  (event) => {
   event.preventDefault();
-  pageswipex0 = event.touches[0].pageX;
+  pageswipex0 = event.touches[0].clientX;
 });
 nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
-  pageswipex1 = event.changedTouches[0].pageX;
+  pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(-pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
   event.preventDefault();
-  pageswipex2 = event.changedTouches[0].pageX;
+  pageswipex2 = event.changedTouches[0].clientX;
   naka.style.transform ="translate(0, 0)";
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
@@ -406,17 +406,17 @@ nakabutton1.addEventListener("touchend",  (event) => {
 });
 nakabutton3.addEventListener("touchstart",  (event) => {
   event.preventDefault();
-  pageswipex0 = event.touches[0].pageX;
+  pageswipex0 = event.touches[0].clientX;
 });
 nakabutton3.addEventListener("touchmove",  (event) => {
   event.preventDefault();
-  pageswipex1 = event.changedTouches[0].pageX;
+  pageswipex1 = event.changedTouches[0].clientX;
   
-  naka.style.transform = "translate(${Math.floor(- pageswipex1+pageswipex0)}px, 0)";
+  naka.style.transform = "translate(${Math.floor(pageswipex1-pageswipex0)}px, 0)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
   event.preventDefault();
-  pageswipex2 = event.changedTouches[0].pageX;
+  pageswipex2 = event.changedTouches[0].clientX;
   naka.style.transform ="translate(0, 0)";
   const w = naka.offsetWidth;
   if (pageswipex2-pageswipex0 > w/2){
@@ -448,15 +448,13 @@ uebuttonright.addEventListener("click", async (event) => {
 title.addEventListener("mousemove", (event) => {
   event.preventDefault();
   var titlemox = event.clientX;
-  var titlemoy = event.clientY;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
   titlehover.style.top=1.5*ue.offsetHeight+"px"
 });
 title.addEventListener("touchmove", (event) => {
   event.preventDefault();
-  var titlemox = event.clientX;
-  var titlemoy = event.clientY;
+  var titlemox = event.changedTouches[0].clientX;
   titlehover.style.display="block";
   titlehover.style.left=titlemox+"px";
   titlehover.style.top=1.5*ue.offsetHeight+"px"
