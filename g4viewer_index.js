@@ -64,6 +64,10 @@ const nextimgs = [nextmangaimg1, nextmangaimg2, nextmangaimg3, nextmangaimg4];
 
 const row2hako=document.getElementById("row2hako");
 
+var pageswipex0=0;
+var pageswipex1 =0;
+var pageswipex2 =0;
+
 window.onload = function(){  
   var style= mangahako.style;
   style.width= "60%";
@@ -387,13 +391,7 @@ nakabutton2.addEventListener("click", (event) => {
     nakabutton2func("-10%", "-15%", 1)(event);
   }
 });
-nakabutton2.addEventListener("touch", (event) => {
-  if (nakabutton2flag===1){
-    nakabutton2func("0%", "0%", 0)(event);
-  }else{
-    nakabutton2func("-10%", "-15%", 1)(event);
-  }
-});
+
 
 nakabutton3.addEventListener("click", (event) => {
   if (currentindex != 0){
@@ -405,28 +403,9 @@ nakabutton3.addEventListener("click", (event) => {
     scrollbar.style.display="block";
   }
 });
-nakabutton3.addEventListener("touch", (event) => {
-  if (currentindex != 0){
-    currentindex= currentindex-1
-  }
-  nakaanimate(currentindex);
-  if (currentindex <mainpages){
-    nakabutton2func("0%", "0%", 0)(event);
-    scrollbar.style.display="block";
-  }
-});
+
 nakabutton1.addEventListener("click", (event) => {
   if (currentindex < endpage-1){
-    currentindex = currentindex+1
-  }
-  nakaanimate(currentindex);
-  if (currentindex >=mainpages){
-    nakabutton2func("-10%", "-15%", 1)(event);
-    scrollbar.style.display="none";
-  }
-});
-nakabutton1.addEventListener("touch", (event) => {
-  if (currentindex != endpage-1){
     currentindex = currentindex+1
   }
   nakaanimate(currentindex);
@@ -492,3 +471,28 @@ async function fetchtool(index) {
   return cachedRows[index].split(",").map(item => item.trim());
 }
 
+//https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
+nakaoverlay.addEventListener("touchstart",  (event) => {
+  event.preventDefault();
+  const pageswipex0 = event.touches[0].pageX;
+});
+nakaoverlay.addEventListener("touchmove",  (event) => {
+  event.preventDefault();
+  pageswipex1 = event.changedTouches[0].pageX;
+  
+  let current = parseInt(naka.style.right) || 0; // fallback to 0 if empty
+  naka.style.right = Math.floor(current - pageswipex1+pageswipex0) + "px";
+});
+nakaoverlay.addEventListener("touchmove",  (event) => {
+  event.preventDefault();
+  pageswipex2 = event.changedTouches[0].pageX;
+  
+  const w = naka.offsetWidth;
+  if (pageswipex2-pageswipex0 > w/2){
+    naka.animate(currentindex+1);
+  }else if(pageswipex2-pageswipex0 < -w/2){
+    naka.animate(currentindex-1);
+  }else{
+    naka.animate(currentindex);
+  }
+});
