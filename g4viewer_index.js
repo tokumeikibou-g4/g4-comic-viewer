@@ -157,7 +157,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.9";
+    title.textContent="ver2";
   
   
   var style= sita.style;
@@ -355,7 +355,7 @@ nakabutton1.addEventListener("click", (event) => {
 
 function nakabuttontouchmove(){
   naka.animate(
-    [{ transform: `translateX(${Math.floor(pageswipex1-pageswipex0)}px)` }],
+    [{ transform: `translateX(${currentindex*naka.offsetWidth+Math.floor(pageswipex1-pageswipex0)}px)` }],
     { duration: 0, fill: "forwards" }
   );
   naka.style.transform = "translateX(${currentindex*naka.offsetWidth+Math.floor(pageswipex1-pageswipex0)}px)";
