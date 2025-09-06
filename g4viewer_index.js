@@ -121,6 +121,11 @@ window.onload = function(){
     style.position= "absolute";
     style.display="flex";
     style.setProperty("z-index", "-1");
+    style.transform="translate(0, 0)";
+    naka.animate(
+      [{ transform: `translateX(0)` }],
+      { duration: 100, fill: "forwards" }
+    );
   
   var style= ue.style;
     style.top="0";
@@ -152,7 +157,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.5";
+    title.textContent="ver1.6";
   
   
   var style= sita.style;
@@ -290,12 +295,14 @@ window.onload = function(){
 function nakaanimate(index){
   if (index==-1)return;
   if (index==6)return;
-  var rightPercent = index*-100+"%";
+  var translateX = index*100+"%";
   naka.animate(
-      [{ right: rightPercent }],
-      { duration: 200, fill: "forwards" }
-    );
-  naka.style.right=rightPercent;
+    [{ transform: `translateX(${translateX})` }],
+    { duration: 200, fill: "forwards" }
+  );
+
+  naka.style.transform = `translateX(${translateX})`;
+  currentindex = index;
   
   pages.forEach(page => page.style.display = "none");
   if (index<4){
