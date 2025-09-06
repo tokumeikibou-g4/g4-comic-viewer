@@ -121,7 +121,7 @@ window.onload = function(){
     style.position= "absolute";
     style.display="flex";
     style.setProperty("z-index", "-1");
-    style.transform="translate(0, 0)";
+    style.transform="translateX(0)";
     naka.animate(
       [{ transform: `translateX(0)` }],
       { duration: 100, fill: "forwards" }
@@ -157,7 +157,7 @@ window.onload = function(){
     style.height="100%"
     style.color="white";
     style.fontSize= 0.6*title.offsetHeight+"px";
-    title.textContent="ver1.7";
+    title.textContent="ver1.8";
   
   
   var style= sita.style;
@@ -291,7 +291,8 @@ window.onload = function(){
   
 }
 
-//naka
+//******************************************************************
+//naka******************************************************************
 function nakaanimate(index){
   if (index==-1)return;
   if (index==6)return;
@@ -351,7 +352,7 @@ nakabutton1.addEventListener("click", (event) => {
     scrollbar.style.display="none";
   }
 });
-//https://dianxnao.com/javascript%EF%BC%9A%E3%82%B9%E3%83%9E%E3%83%9B%E3%81%A7%E3%82%BF%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%E5%BA%A7%E6%A8%99%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B/
+
 nakabutton2.addEventListener("touchstart",  (event) => {
   event.preventDefault();
   pageswipex0 = event.touches[0].clientX;
@@ -360,6 +361,10 @@ nakabutton2.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
+  naka.animate(
+    [{ transform: `translateX(${Math.floor(pageswipex1-pageswipex0)}px)` }],
+    { duration: 0, fill: "forwards" }
+  );
   naka.style.transform = "translateX(${Math.floor(pageswipex1-pageswipex0)}px)";
 });
 nakabutton2.addEventListener("touchend",  (event) => {
@@ -390,6 +395,10 @@ nakabutton1.addEventListener("touchmove",  (event) => {
   event.preventDefault();
   pageswipex1 = event.changedTouches[0].clientX;
   
+  naka.animate(
+    [{ transform: `translateX(${Math.floor(pageswipex1-pageswipex0)}px)` }],
+    { duration: 0, fill: "forwards" }
+  );
   naka.style.transform = "translateX(${Math.floor(pageswipex1-pageswipex0)}px)";
 });
 nakabutton1.addEventListener("touchend",  (event) => {
@@ -424,6 +433,10 @@ nakabutton3.addEventListener("touchmove",  (event) => {
   pageswipex1 = event.changedTouches[0].clientX;
   
   //naka.style.right = (currentindex)*naka.offsetWidth-pageswipex1+pageswipex0+"px";
+  naka.animate(
+    [{ transform: `translateX(${Math.floor(pageswipex1-pageswipex0)}px)` }],
+    { duration: 0, fill: "forwards" }
+  );
   naka.style.transform = "translateX(${Math.floor(pageswipex1-pageswipex0)}px)";
 });
 nakabutton3.addEventListener("touchend",  (event) => {
